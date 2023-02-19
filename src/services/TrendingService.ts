@@ -1,12 +1,11 @@
-import { AxiosResponse } from 'axios';
-import { TrendingResponse } from '../models/TrendingModel';
 import { AxiosGet } from '../setup/axios/axiosClient';
+import useSWR from 'swr';
 
-const TrendingServices = {
-  getTrending(): Promise<AxiosResponse<any, any>> {
-    const url = 'trending/movie/week';
-    return AxiosGet(url);
-  },
-};
-
-export default TrendingServices;
+export function useTrending() {
+  const { data, error, isLoading } = useSWR('trending/movie/week', AxiosGet);
+  return {
+    trending: data,
+    isLoading,
+    isError: error,
+  };
+}

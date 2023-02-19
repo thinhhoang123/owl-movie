@@ -1,5 +1,6 @@
 .imgBox {
   position: relative;
+  margin: 1rem;
   .blockDescription {
     font-weight: bold;
     position: absolute;
@@ -11,18 +12,27 @@
     justify-content: center;
     margin: 0 auto;
     flex-direction: column;
+    button {
+      width: 0;
+      font-size: 0;
+      opacity: 0;
+      transition: 0.5s ease;
+    }
+    .title {
+      text-shadow: 1px 1px 10px #000;
+    }
   }
-  button {
-    width: 0;
-    font-size: 0;
-    opacity: 0;
-    transition: 0.5s ease;
+  img {
+    border-radius: 10px;
   }
+
   &:hover {
-    border-left: 5px solid #e41e26;
+    box-shadow: 5px 5px 10px #e41e26;
+    border-radius: 10px;
     img {
+      border-radius: 10px;
       opacity: 0.5;
-      transition: opacity 0.35s ease-in-out;
+      transition: 0.35s ease-in-out;
     }
     button {
       opacity: 1;
@@ -30,10 +40,10 @@
       width: 100%;
     }
   }
-  img {
-    width: 95%;
-  }
-  .title {
-    text-shadow: 1px 1px 10px #000;
+
+  .ratingPercent {
+    position: absolute;
+    top: -10px;
+    right: -5px;
   }
 }

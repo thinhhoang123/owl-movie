@@ -1,7 +1,8 @@
 import * as React from 'react';
 import HeaderNav from '../HeaderNav';
 import AppRouter from '../AppRouter';
-
+import Footer from '../Footer/Footer';
+import styles from './index.module.scss';
 export interface ILayoutProps {
   children?: React.ReactNode;
 }
@@ -12,10 +13,12 @@ export default function Layout(props: ILayoutProps) {
       <header>
         <HeaderNav />
       </header>
-      <main className="relative top-20 container mx-auto">
+      <main className="container mx-auto pt-20">
         <AppRouter />
       </main>
-      <footer>this is footer</footer>
+      <footer className={styles.footer}>
+        <Footer />
+      </footer>
     </>
   );
 }

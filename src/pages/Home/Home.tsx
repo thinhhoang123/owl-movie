@@ -1,25 +1,12 @@
 import * as React from 'react';
-import MovieSlider from '../../components/MovieSlider';
-import MovieCard from '../../components/MovieCard/MovieCard';
-import TrendingServices from '../../services/TrendingService';
-import { TrendingResponse } from '../../models/TrendingModel';
-import { AxiosResponse } from 'axios';
+import Trending from './components/Trending/Trending';
 
 export interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
-  React.useEffect(() => {
-    getTrending();
-  });
-
-  const getTrending = async () => {
-    const res: AxiosResponse<TrendingResponse> =
-      await TrendingServices.getTrending();
-    console.log(res);
-  };
   return (
     <div>
-      <MovieSlider />
+      <Trending />
     </div>
   );
 }

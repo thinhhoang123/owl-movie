@@ -1,0 +1,15 @@
+.trendingText {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  position: relative;
+  margin-bottom: 1.5rem;
+  &:after {
+    content: '';
+    width: 40px;
+    height: 4px;
+    background: #e41e26;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
