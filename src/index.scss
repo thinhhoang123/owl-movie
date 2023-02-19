@@ -1,0 +1,22 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './setup/styles/mixins';
+
+$dark-background: #141414;
+$base-color: #e41e26;
+:root {
+  font-family: Raleway, Helvetica, Arial, sans-serif;
+
+  background-color: $dark-background;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 1rem;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  a {
+    @include hyperLink();
+  }
+}
+
