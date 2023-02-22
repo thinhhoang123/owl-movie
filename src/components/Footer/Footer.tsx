@@ -25,11 +25,6 @@ export default function Footer(props: IFooterProps) {
             </h2>
             <ul className="text-gray-600 dark:text-gray-400">
               <li>
-                <a href="https://flowbite.com/" className="hover:underline">
-                  Flowbite
-                </a>
-              </li>
-              <li className="mt-4">
                 <a href="https://tailwindcss.com/" className="hover:underline">
                   Tailwind CSS
                 </a>
