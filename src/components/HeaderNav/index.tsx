@@ -2,15 +2,22 @@ import * as React from 'react';
 import styles from './index.module.scss';
 import headerLogo from '../../assets/logo/owl-movie.svg';
 import { Link } from 'react-router-dom';
+import DropdownNavBar from '../DropdownNavBar/DropdownNavBar';
 export interface IHeaderNavProps {}
-const routerLink = [
+const routerLink: { path: string; page: string; child?: any[] }[] = [
   {
     path: '/home',
     page: 'home',
   },
   {
-    path: '/about',
-    page: 'about',
+    path: '/',
+    page: 'movies',
+    child: [
+      { path: '/popular', page: 'Popular' },
+      { path: '/nowPlaying', page: 'Now playing' },
+      { path: '/upComing', page: 'Up Coming' },
+      { path: '/topRate', page: 'Top Rated' },
+    ],
   },
   {
     path: '/services',
@@ -68,7 +75,11 @@ export default function HeaderNav(props: IHeaderNavProps) {
         >
           <ul className="flex flex-col p-4 mt-4  md:flex-row md:space-x-8 md:mt-0 md:text-sm">
             {routerLink.map((route, index) => {
-              return (
+              const haveChild = 'child' in route;
+              console.log(route);
+              return haveChild ? (
+                <DropdownNavBar key={index} {...route} />
+              ) : (
                 <li key={index}>
                   <Link to={route.path}>{route.page}</Link>
                 </li>
