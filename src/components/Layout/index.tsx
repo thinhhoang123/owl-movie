@@ -13,7 +13,7 @@ export default function Layout(props: ILayoutProps) {
       <header>
         <HeaderNav />
       </header>
-      <main className="container mx-auto pt-20">
+      <main>
         <AppRouter />
       </main>
       <footer className={styles.footer}>

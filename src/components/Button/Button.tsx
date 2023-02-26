@@ -5,11 +5,21 @@ export interface IButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   icon?: string;
+  width?: string;
 }
 
-export default function Button({ onClick, children, icon }: IButtonProps) {
+export default function Button({
+  onClick,
+  children,
+  icon,
+  width,
+}: IButtonProps) {
   return (
-    <button className={styles.btnCustom} onClick={onClick}>
+    <button
+      className={styles.btnCustom}
+      onClick={onClick}
+      style={{ width: `${width}` }}
+    >
       {icon ? <i className={icon}></i> : null} {children}
     </button>
   );

@@ -76,7 +76,6 @@ export default function HeaderNav(props: IHeaderNavProps) {
           <ul className="flex flex-col p-4 mt-4  md:flex-row md:space-x-8 md:mt-0 md:text-sm">
             {routerLink.map((route, index) => {
               const haveChild = 'child' in route;
-              console.log(route);
               return haveChild ? (
                 <DropdownNavBar key={index} {...route} />
               ) : (

@@ -22,7 +22,7 @@ export default function Rating(props: IRatingProps) {
   let colorPercent: string = ratingPercentColor(convertToPercent);
   return (
     <div
-      className={`${styles.ratingCircle} bg-blue-100 text-blue-800 text-sm font-semibold ${colorPercent} dark:text-neutral-800`}
+      className={`${styles.ratingCircle} text-blue-800 text-sm font-semibold ${colorPercent} dark:text-neutral-800 `}
     >
       <span>{convertToPercent}%</span>
     </div>
