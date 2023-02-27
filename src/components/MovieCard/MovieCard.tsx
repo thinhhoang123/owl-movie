@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './MovieCard.module.scss';
 import { TMDBImage } from '../../setup/ultils/GetImageTmdb';
 import Button from '../Button/Button';
-import Rating from '../Rating/Rating';
+import RatingBadge from '../RatingBadge/RatingBadge';
 
 export interface IMovieCardProps {
   title?: string;
@@ -21,7 +21,7 @@ export default function MovieCard(props: IMovieCardProps) {
         </Button>
       </div>
       <div className={styles.ratingPercent}>
-        <Rating score={props.voteAverage} />
+        <RatingBadge score={props.voteAverage} />
       </div>
     </div>
   );

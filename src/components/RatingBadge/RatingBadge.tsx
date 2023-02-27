@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from './Rating.module.scss';
+import styles from './RatingBadge.module.scss';
 export interface IRatingProps {
   score: number;
 }
@@ -17,7 +17,7 @@ const ratingPercentColor = (score: number) => {
   else return COLOR_RATING.TOO_BAD;
 };
 
-export default function Rating(props: IRatingProps) {
+export default function RatingBadge(props: IRatingProps) {
   const convertToPercent: number = +(Number(props.score) * 10).toFixed();
   let colorPercent: string = ratingPercentColor(convertToPercent);
   return (
