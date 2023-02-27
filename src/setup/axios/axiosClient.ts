@@ -9,8 +9,13 @@ const axiosClient = axios.create({
 });
 
 export const AxiosGet = (url: string) => {
-  const urlQuery = url + `?api_key=${VITE_API_KEY}`;
-  return axiosClient.get(urlQuery).then((res) => res.data);
+  return axiosClient
+    .get(url, {
+      params: {
+        api_key: VITE_API_KEY,
+      },
+    })
+    .then((res) => res.data);
 };
 
 export default axiosClient;

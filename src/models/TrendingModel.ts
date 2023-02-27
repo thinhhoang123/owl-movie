@@ -5,8 +5,8 @@ export interface TrendingResponse {
   total_results: number;
 }
 
-interface TrendingResponseList {
-  poster_path: string | null;
+export interface TrendingResponseList {
+  poster_path: string;
   adult: boolean;
   overview: string;
   release_date: string;
@@ -15,7 +15,7 @@ interface TrendingResponseList {
   original_title: string;
   original_language: string;
   title: string;
-  backdrop_path: string | null;
+  backdrop_path: string;
   popularity: number;
   vote_count: number;
   video: boolean;

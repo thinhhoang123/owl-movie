@@ -9,3 +9,21 @@ export function useNowPlaying() {
     isError: error,
   };
 }
+
+export function useVideos(videoId: number, type: string) {
+  if (!videoId) return { video: null, isLoading: false, isError: false };
+  const { data, error, isLoading } = useSWR(
+    `movie/${videoId}/videos`,
+    AxiosGet
+  );
+  if (!isLoading) {
+    const movieWithType = data.results.find(
+      (movie: any) => movie.type === type
+    );
+    return {
+      video: movieWithType,
+      isLoading,
+      isError: error,
+    };
+  }
+}

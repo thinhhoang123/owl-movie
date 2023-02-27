@@ -7,8 +7,7 @@ export interface ICarouselProps {
   children: React.ReactNode;
 }
 
-export default function Carousel(props: ICarouselProps) {
-  console.log(props.setting);
+const Carousel = React.forwardRef((props: ICarouselProps, ref) => {
   const settings = props.setting
     ? props.setting
     : {
@@ -45,5 +44,11 @@ export default function Carousel(props: ICarouselProps) {
         ],
       };
 
-  return <Slider {...settings}>{props.children}</Slider>;
-}
+  return (
+    <Slider ref={ref} {...settings}>
+      {props.children}
+    </Slider>
+  );
+});
+
+export default Carousel;
