@@ -1,0 +1,12 @@
+.errorCard {
+  background-color: rgba(255, 255, 255, 0.074);
+  border: 1px solid rgba(255, 255, 255, 0.222);
+  backdrop-filter: blur(20px);
+  border-radius: 0.7rem;
+  transition: all ease 0.3s;
+  padding: 1.5rem;
+}
+
+.errorImage {
+  filter: drop-shadow(0 0 0.75rem crimson);
+}

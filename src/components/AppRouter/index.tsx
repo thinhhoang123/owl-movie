@@ -1,13 +1,14 @@
 import { useRoutes } from 'react-router-dom';
 import Home from '../../pages/Home/Home';
+import Error from '../../pages/Error/Error';
 import App from '../../App';
 
 export const Router = {
   appRouter: [
-    // {
-    //   path: '*',
-    //   element: <ErrorPage />,
-    // },
+    {
+      path: '*',
+      element: <Error />,
+    },
     {
       path: '/',
       element: <App />,
