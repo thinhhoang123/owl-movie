@@ -17,18 +17,26 @@ export default function Videos({
   videoId,
   type,
 }: IVideosProps) {
-  const videos = useVideos(videoId, type);
-  if (videos && videos.isLoading && !videos.video) return <Loading />;
+  const { video, isLoading } = useVideos(videoId);
+  const videoRef = React.useRef();
+  const opts = {
+    height: '390',
+    width: '640',
+  };
   return (
     <Backdrop
       sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={openVideo}
       onClick={onClose}
     >
-      {videos?.isLoading ? (
+      {isLoading ? (
         <Loading />
       ) : (
-        <YouTube videoId={videos?.video?.key} />
+        <YouTube
+          videoId={video.results.find((movie: any) => movie.type === type)?.key}
+          opts={opts}
+          loading={'lazy'}
+        />
       )}
     </Backdrop>
   );
