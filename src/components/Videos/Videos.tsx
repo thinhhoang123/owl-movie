@@ -3,7 +3,7 @@ import * as React from 'react';
 import YouTube from 'react-youtube';
 import { useVideos } from '../../services/Movies';
 import Loading from '../Loading/Loading';
-
+import { isMobile } from 'react-device-detect';
 export interface IVideosProps {
   openVideo: boolean;
   onClose: () => void;
@@ -20,8 +20,8 @@ export default function Videos({
   const { video, isLoading } = useVideos(videoId);
   const videoRef = React.useRef();
   const opts = {
-    height: '390',
-    width: '640',
+    height: isMobile ? '190' : '390',
+    width: isMobile ? '340' : '640',
   };
   return (
     <Backdrop
