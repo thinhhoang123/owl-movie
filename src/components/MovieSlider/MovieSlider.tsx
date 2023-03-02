@@ -7,7 +7,7 @@ import Carousel from '../Carousel/Carousel';
 export interface IMovieSliderProps {
   trending: TrendingResponse;
   title?: string;
-  titleRender: any;
+  titleRender: () => JSX.Element;
   isLoading: boolean;
 }
 
@@ -15,7 +15,6 @@ export default function MovieSlider(props: IMovieSliderProps) {
   return (
     <div>
       <h2 className={styles.trendingText}>
-        {' '}
         {props.titleRender() || props.title}
       </h2>
       {props.isLoading ? (
@@ -24,13 +23,12 @@ export default function MovieSlider(props: IMovieSliderProps) {
         <Carousel>
           {props.trending.results.map((mv: any, index) => {
             return (
-              <div key={index}>
-                <MovieCard
-                  title={mv.original_title}
-                  backDrop={mv.backdrop_path}
-                  voteAverage={mv.vote_average}
-                />
-              </div>
+              <MovieCard
+                key={index}
+                title={mv.original_title}
+                backDrop={mv.backdrop_path}
+                voteAverage={mv.vote_average}
+              />
             );
           })}
         </Carousel>

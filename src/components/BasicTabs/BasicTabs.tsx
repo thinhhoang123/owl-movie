@@ -4,24 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import styles from './BasicTabs.module.scss';
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-interface IBasicTabsProps {
-  tabs?: ITapProps[];
-  defaultValue: number;
-  onChange: (value: number) => void;
-}
-
-interface ITapProps {
-  id: number;
-  label: string;
-  describe?: string;
-}
+import { IBasicTabsProps, TabPanelProps } from './BasicTabsModel';
 
 export default function BasicTabs({
   defaultValue,
@@ -50,15 +33,14 @@ export default function BasicTabs({
           })}
         </Tabs>
       </Box>
-      {/* <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+      {tabs?.map((tab, index) => {
+        if (!tab.describe) return;
+        return (
+          <TabPanel value={value} index={index}>
+            {tab.describe}
+          </TabPanel>
+        );
+      })}
     </Box>
   );
 }

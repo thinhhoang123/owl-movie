@@ -3,13 +3,16 @@
   font-weight: bolder;
   position: relative;
   margin-bottom: 1.5rem;
+  padding-left: 0.5rem;
   &:after {
     content: '';
-    width: 40px;
-    height: 4px;
+    width: 0.43rem;
+    height: 50%;
     background: #e41e26;
     position: absolute;
-    bottom: 0;
+    top: 50%;
     left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
   }
 }

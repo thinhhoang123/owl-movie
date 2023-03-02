@@ -3,10 +3,11 @@ import MovieSlider from '../../../../components/MovieSlider/MovieSlider';
 import { useTrending } from '../../../../services/TrendingService';
 import BasicTabs from '../../../../components/BasicTabs/BasicTabs';
 import styles from './Trending.module.scss';
+import { ITapProps } from '../../../../components/BasicTabs/BasicTabsModel';
 
 export interface ITrendingProps {}
 
-const trendingMovieTime: { id: number; label: string; value: string }[] = [
+const trendingMovieTime: ITapProps[] = [
   { id: 0, label: 'today', value: 'day' },
   { id: 1, label: 'this week', value: 'week' },
 ];
