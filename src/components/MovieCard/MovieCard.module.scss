@@ -4,33 +4,29 @@
   .blockDescription {
     font-weight: bold;
     position: absolute;
-    top: 0;
-    left: 1rem;
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     button {
-      width: 0;
       font-size: 0;
       opacity: 0;
       transition: 0.5s ease;
     }
-    .title {
-      text-shadow: 1px 1px 10px #000;
-    }
+  }
+  .title {
+    margin-top: 0.5em;
+    text-shadow: 1px 1px 10px #000;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   img {
-    border-radius: 9px;
+    border-radius: 16px;
   }
 
   &:hover {
-    box-shadow: 0px 0px 10px #e41e26;
-    border-radius: 10px;
     img {
-      border-radius: 10px;
       opacity: 0.5;
       transition: 0.35s ease-in-out;
     }
@@ -43,7 +39,7 @@
 
   .ratingPercent {
     position: absolute;
-    top: -10px;
-    right: -5px;
+    top: 10px;
+    right: 10px;
   }
 }

@@ -28,6 +28,7 @@ export default function MovieSlider(props: IMovieSliderProps) {
                 title={mv.original_title}
                 backDrop={mv.backdrop_path}
                 voteAverage={mv.vote_average}
+                releaseDate={mv.release_date}
               />
             );
           })}
