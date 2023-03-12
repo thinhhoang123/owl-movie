@@ -20,7 +20,7 @@ export default function MovieSlider(props: IMovieSliderProps) {
         <Loading />
       ) : (
         <Carousel>
-          {props.trending.results.map((mv: any, index) => {
+          {props.trending?.results.map((mv: any, index) => {
             return (
               <MovieCard
                 key={index}
