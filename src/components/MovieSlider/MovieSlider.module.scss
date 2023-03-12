@@ -1,4 +1,4 @@
-.trendingText {
+.titleText {
   font-size: 1.5rem;
   font-weight: bolder;
   position: relative;
@@ -7,8 +7,8 @@
   &:after {
     content: '';
     width: 0.43rem;
-    height: 50%;
-    background: #e41e26;
+    height: 40%;
+    background: var(--primary-color);
     position: absolute;
     top: 50%;
     left: 0;

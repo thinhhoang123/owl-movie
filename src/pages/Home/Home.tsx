@@ -1,18 +1,16 @@
 import * as React from 'react';
+import styles from './Home.module.scss';
 import Trending from './components/Trending/Trending';
-import Banner from './components/Banner/Banner';
+import { Container } from '@mui/material';
+export interface IAppProps {}
 
-export interface IHomeProps {}
-
-export default function Home(props: IHomeProps) {
+const Home: React.FC<IAppProps> = (props) => {
   return (
-    <div>
-      <div className="mx-auto">
-        <Banner />
-      </div>
-      <div className="container mx-auto mt-20">
+    <>
+      <Container maxWidth="xl">
         <Trending />
-      </div>
-    </div>
+      </Container>
+    </>
   );
-}
+};
+export default Home;

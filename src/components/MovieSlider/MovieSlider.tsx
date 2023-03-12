@@ -4,6 +4,7 @@ import { TrendingResponse } from '../../models/TrendingModel';
 import styles from './MovieSlider.module.scss';
 import Loading from '../Loading/Loading';
 import Carousel from '../Carousel/Carousel';
+
 export interface IMovieSliderProps {
   trending: TrendingResponse;
   title?: string;
@@ -14,9 +15,7 @@ export interface IMovieSliderProps {
 export default function MovieSlider(props: IMovieSliderProps) {
   return (
     <div>
-      <h2 className={styles.trendingText}>
-        {props.titleRender() || props.title}
-      </h2>
+      <h2 className={styles.titleText}>{props.titleRender() || props.title}</h2>
       {props.isLoading ? (
         <Loading />
       ) : (

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import styles from './MovieCard.module.scss';
 import { TMDBImage } from '../../setup/ultils/GetImageTmdb';
-import Button from '../Button/Button';
-import RatingBadge from '../RatingBadge/RatingBadge';
 import moment from 'moment-timezone';
+import ButtonCP from '../Button/ButtonCP';
 
 export interface IMovieCardProps {
   title?: string;
@@ -13,21 +12,22 @@ export interface IMovieCardProps {
 }
 
 export default function MovieCard(props: IMovieCardProps) {
-  const getYearMovie = moment(props.releaseDate || '').year();
+  const yearMovie = moment(props.releaseDate || '').year();
   return (
-    <div className={styles.imgBox}>
+    <div className={styles.imgContainer}>
       <img src={TMDBImage(props.backDrop)} loading="lazy"></img>
       <div className={styles.blockDescription}>
-        <Button icon="fas fa-play">
+        <ButtonCP
+          className={styles.descriptionBtn}
+          icon={<i className="fad fa-play"></i>}
+        >
           <span className={styles.btnText}>Play now</span>
-        </Button>
+        </ButtonCP>
       </div>
-      <div className={styles.ratingPercent}>
-        <RatingBadge score={props.voteAverage} />
-      </div>
+      {/* <div className={styles.ratingPercent}></div> */}
       <h6 className={styles.title}>
         <span hidden={props.releaseDate ? false : true}>
-          {getYearMovie} &#x2022;
+          {yearMovie} <span className={styles.dot}>&#x2022;</span>
         </span>
         🎬 {props.title}
       </h6>

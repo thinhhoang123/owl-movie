@@ -1,0 +1,10 @@
+.navLinkContainer {
+  a {
+    text-decoration: none;
+  }
+  .active {
+    color: var(--primary-color);
+    text-decoration: underline !important;
+  }
+  margin: 0 0.2em;
+}

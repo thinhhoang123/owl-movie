@@ -1,13 +1,14 @@
-.imgBox {
+.imgContainer {
   position: relative;
   margin: 1rem;
+  width: 100%;
   .blockDescription {
     font-weight: bold;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    button {
+    .descriptionBtn {
       font-size: 0;
       opacity: 0;
       transition: 0.5s ease;
@@ -16,12 +17,18 @@
   .title {
     margin-top: 0.5em;
     text-shadow: 1px 1px 10px #000;
-    width: 100%;
+    width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1em;
+    font-weight: 500;
+    .dot {
+      color: var(--primary-color);
+    }
   }
   img {
+    width: 100%;
     border-radius: 16px;
   }
 
@@ -29,17 +36,12 @@
     img {
       opacity: 0.5;
       transition: 0.35s ease-in-out;
+      transform: scale(1.05);
     }
-    button {
+    .descriptionBtn {
       opacity: 1;
       font-size: 1rem;
       width: 100%;
     }
-  }
-
-  .ratingPercent {
-    position: absolute;
-    top: 10px;
-    right: 10px;
   }
 }

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Slider from 'react-slick';
 import { isMobile } from 'react-device-detect';
+import Slider from 'react-slick';
 
 export interface ICarouselProps {
   setting?: any;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Carousel = React.forwardRef((props: ICarouselProps, ref) => {
@@ -13,7 +13,8 @@ const Carousel = React.forwardRef((props: ICarouselProps, ref) => {
     : {
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        centerMode: true,
+        slidesToShow: 3,
         slidesToScroll: 1,
         arrows: !isMobile,
         responsive: [
@@ -45,7 +46,7 @@ const Carousel = React.forwardRef((props: ICarouselProps, ref) => {
       };
 
   return (
-    <Slider ref={ref} {...settings}>
+    <Slider {...settings} ref={ref}>
       {props.children}
     </Slider>
   );
