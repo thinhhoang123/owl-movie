@@ -1,8 +1,6 @@
+@import './styles/_colorSchema.scss';
 :root {
-  --primary-color: #e41e26;
-  --dark-background-color: #141414;
-  --text-color: rgba(255, 255, 255, 0.87);
-  --dark-glassmorphism: rgba(20, 20, 20, 0.5);
+  @include Color-Schema;
 
   font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -68,4 +66,3 @@ button:focus-visible {
 .slick-slide > div {
   margin: 0 0.5em;
 }
-
