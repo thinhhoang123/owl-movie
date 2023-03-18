@@ -1,0 +1,56 @@
+.detailLayout {
+  .headerDetail {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    .filterBackground {
+      background-image: linear-gradient(
+        to right,
+        rgba(66, 66, 66, 0.4) calc((50vw - 170px) - 340px),
+        rgba(66, 66, 66, 0.8) 50%,
+        rgba(66, 66, 66, 0.9) 100%
+      );
+      padding: 2em;
+      .headerDetailContainer {
+        display: flex;
+        gap: 3em;
+        align-items: center;
+        .posterPath {
+          width: 20em;
+          border-radius: 16px;
+          &:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease-in;
+          }
+        }
+        .detailInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+          .detailName {
+            font-weight: bolder;
+          }
+          .fact {
+            display: flex;
+            gap: 0.5em;
+          }
+          .tagLine {
+            font-style: italic;
+            opacity: 0.7;
+          }
+          .createdLayout {
+            display: flex;
+            gap: 1em;
+            .createdBy {
+              align-items: center;
+              width: fit-content;
+              display: flex;
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+  }
+}

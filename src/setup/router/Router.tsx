@@ -3,7 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../../pages/Home/Home';
 import Layout from '../../components/Layout/Layout';
 import Error from '../../pages/Error/Error';
-import Test from '../../pages/Home/Text';
+import TV from '../../pages/TV/TV';
+import TVDetail from '../../pages/TV/components/TVDetail/TVDetail';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,9 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/test',
-        element: <Test />,
+        path: '/tv',
+        element: <TV />,
+        children: [{ path: ':id', element: <TVDetail /> }],
       },
     ],
   },
