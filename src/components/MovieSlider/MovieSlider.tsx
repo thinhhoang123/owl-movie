@@ -12,7 +12,7 @@ export interface IMovieSliderProps {
   isLoading: boolean;
 }
 
-export default function MovieSlider(props: IMovieSliderProps) {
+const MovieSlider: React.FC<IMovieSliderProps> = (props) => {
   return (
     <div>
       <h2 className={styles.titleText}>{props.titleRender() || props.title}</h2>
@@ -35,4 +35,6 @@ export default function MovieSlider(props: IMovieSliderProps) {
       )}
     </div>
   );
-}
+};
+
+export default MovieSlider;

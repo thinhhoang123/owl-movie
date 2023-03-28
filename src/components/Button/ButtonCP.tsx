@@ -2,7 +2,7 @@ import { Chip } from '@mui/material';
 import React from 'react';
 import styles from './ButtonCP.module.scss';
 
-interface Props {
+interface IButtonCP {
   children?: React.ReactNode;
   outline?: boolean;
   onClick?: () => void;
@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-const ButtonCP: React.FC<Props> = ({
+const ButtonCP: React.FC<IButtonCP> = ({
   children,
   onClick,
   outline,
