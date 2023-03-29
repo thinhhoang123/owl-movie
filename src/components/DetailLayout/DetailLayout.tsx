@@ -6,6 +6,7 @@ import styles from './DetailLayout.module.scss';
 export interface IDetailLayoutProps {}
 
 export default function DetailLayout(props: any) {
+  console.log(props);
   return (
     <div className={styles.detailLayout}>
       <HeaderDetail {...props} />

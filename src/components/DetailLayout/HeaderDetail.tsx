@@ -69,9 +69,9 @@ const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
               <p>{props.overview}</p>
             </div>
             <div className={styles.createdLayout}>
-              {props.created_by.map((creater) => {
+              {props.created_by.map((creater, index) => {
                 return (
-                  <div className={styles.createdBy}>
+                  <div className={styles.createdBy} key={index}>
                     <Avatar src={TMDBImage(creater.profile_path)} />
                     <Typography>{creater.name}</Typography>
                   </div>

@@ -54,3 +54,26 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .detailLayout {
+    .headerDetail {
+      .filterBackground {
+        padding: 1em;
+        .headerDetailContainer {
+          display: flex;
+          gap: 1em;
+          flex-direction: column;
+          .detailInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            .detailName {
+              font-size: 2em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
