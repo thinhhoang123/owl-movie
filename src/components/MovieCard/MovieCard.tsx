@@ -11,7 +11,7 @@ export interface IMovieCardProps {
   releaseDate?: string;
 }
 
-export default function MovieCard(props: IMovieCardProps) {
+const MovieCard: React.FC<IMovieCardProps> = (props) => {
   const yearMovie = moment(props.releaseDate || '').year();
   return (
     <div className={styles.imgContainer}>
@@ -33,4 +33,5 @@ export default function MovieCard(props: IMovieCardProps) {
       </h6>
     </div>
   );
-}
+};
+export default MovieCard;

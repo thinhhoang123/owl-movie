@@ -12,12 +12,12 @@ export interface IVideosProps {
   type: string;
 }
 
-export default function Videos({
+const Videos: React.FC<IVideosProps> = ({
   openVideo,
   onClose,
   videoId,
   type,
-}: IVideosProps) {
+}) => {
   const { video, isLoading } = useVideos(videoId);
   const opts = {
     height: isMobile ? '190' : '390',
@@ -41,4 +41,6 @@ export default function Videos({
       )}
     </Backdrop>
   );
-}
+};
+
+export default Videos;
