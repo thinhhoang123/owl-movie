@@ -10,9 +10,9 @@ export function useNowPlaying() {
   };
 }
 
-export function useVideos(videoId: number) {
+export function useVideos(videoId: number, category: string) {
   const { data, error, isLoading } = useSWR(
-    `movie/${videoId}/videos`,
+    `${category}/${videoId}/videos`,
     AxiosGet
   );
 

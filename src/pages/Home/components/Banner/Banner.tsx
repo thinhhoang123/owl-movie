@@ -6,7 +6,7 @@ import Carousel from '../../../../components/Carousel/Carousel';
 import BannerCard from './BannerCard';
 import Slider from 'react-slick';
 import Videos from '../../../../components/Videos/Videos';
-import { VideosType } from '../../../../enums/VideoType';
+import { VideosCategory, VideosType } from '../../../../enums/Videos';
 
 export interface IBannerProps {}
 
@@ -62,6 +62,7 @@ const Banner: React.FC<IBannerProps> = (props) => {
           onClose={handleClose}
           videoId={movieId}
           type={VideosType.TRAILER}
+          category={VideosCategory.MOVIE}
         />
       ) : null}
     </>
