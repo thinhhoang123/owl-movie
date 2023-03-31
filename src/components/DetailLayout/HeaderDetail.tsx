@@ -34,44 +34,44 @@ export interface IHeaderDetailProps {
   genres: { id: number; name: string }[];
   vote_average: number;
   backdrop_path: string;
+  number_of_seasons: number;
 }
 
 const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
   const yearMovie = moment(props.first_air_date || '').year();
   return (
-    <div
-      className={styles.headerDetail}
-      style={{ backgroundImage: `url(${TMDBImage(props.backdrop_path)})` }}
-    >
-      <div className={styles.filterBackground}>
-        <Container maxWidth="xl" className={styles.headerDetailContainer}>
-          <img
-            className={styles.posterPath}
-            src={TMDBImage(props.poster_path)}
-            loading="lazy"
-          ></img>
-          <div className={styles.detailInfo}>
-            <Typography variant="h3" className={styles.detailName}>
-              {props.original_name} (<span>{yearMovie}</span>)
-            </Typography>
-            <div className={styles.fact}>
+    <div className={styles['section-hero']}>
+      <img src={TMDBImage(props.backdrop_path)} alt="" />
+      <div className={styles['hero-container']}>
+        <div className={styles['info-container']}>
+          <Typography variant="h4" className={styles['title-info']}>
+            {props.original_name}
+          </Typography>
+          <div className={styles['title-info-metadata-wrapper']}>
+            <span className={styles['title-info-metadata-item item-year']}>
+              {yearMovie}
+            </span>
+            <span className={styles['title-info-metadata-item item-space']}>
+              |
+            </span>
+            <span className={styles['title-info-metadata-item item-season']}>
+              {props.number_of_seasons} Seasons
+            </span>
+            <span className={styles['title-info-metadata-item item-space']}>
+              |
+            </span>
+            <span className={styles['title-info-metadata-item item-fact']}>
               {props.genres.map((gener) => {
                 return <ButtonCP key={gener.id}>{gener.name}</ButtonCP>;
               })}
-              <span>|</span>
-              <ButtonCP>{props.episode_run_time[0]}m</ButtonCP>
-            </div>
-            <Typography variant="h6" className={styles.tagLine}>
-              {props.tagline}
-            </Typography>
-            <div className={styles.overview}>
-              <Typography variant="h5">Overview</Typography>
-              <p>{props.overview}</p>
-            </div>
-            <div className={styles.createdLayout}>
+            </span>
+          </div>
+          <div className={styles['title-info-synopsis-talent']}>
+            <Typography variant="body1">{props.overview}</Typography>
+            <div className={styles['title-info-talent']}>
               {props.created_by.map((creater, index) => {
                 return (
-                  <div className={styles.createdBy} key={index}>
+                  <div className={styles['created-by']} key={index}>
                     <Avatar src={TMDBImage(creater.profile_path)} />
                     <Typography>{creater.name}</Typography>
                   </div>
@@ -79,7 +79,7 @@ const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
               })}
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     </div>
   );

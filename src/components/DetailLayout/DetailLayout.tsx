@@ -1,15 +1,13 @@
-import { Container } from '@mui/material';
 import * as React from 'react';
 import HeaderDetail from './HeaderDetail';
-import { detailTv } from '../../mockApi/detailTV';
 import styles from './DetailLayout.module.scss';
+import { Container } from '@mui/material';
 export interface IDetailLayoutProps {}
 
 export default function DetailLayout(props: any) {
-  console.log(props);
   return (
-    <div className={styles.detailLayout}>
+    <Container maxWidth="xl" className={styles['detail-layout']}>
       <HeaderDetail {...props} />
-    </div>
+    </Container>
   );
 }

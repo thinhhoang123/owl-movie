@@ -1,48 +1,63 @@
-.detailLayout {
-  .headerDetail {
+.detail-layout {
+  .section-hero {
+    img {
+      width: 100%;
+      border-radius: 1em;
+    }
+    position: relative;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    width: 100%;
-    .filterBackground {
-      background-image: linear-gradient(
-        to right,
-        rgba(66, 66, 66, 0.4) calc((50vw - 170px) - 340px),
-        rgba(66, 66, 66, 0.8) 50%,
-        rgba(66, 66, 66, 0.9) 100%
+
+    border-radius: 1em;
+    .hero-container {
+      position: absolute;
+      top: 0;
+      border-radius: 1em;
+      background: linear-gradient(
+        90deg,
+        #181818 10%,
+        hsla(0, 0%, 9%, 0.98) 20%,
+        hsla(0, 0%, 9%, 0.97) 25%,
+        hsla(0, 0%, 9%, 0.95) 35%,
+        hsla(0, 0%, 9%, 0.94) 40%,
+        hsla(0, 0%, 9%, 0.92) 45%,
+        hsla(0, 0%, 9%, 0.9) 50%,
+        hsla(0, 0%, 9%, 0.87) 55%,
+        hsla(0, 0%, 9%, 0.82) 60%,
+        hsla(0, 0%, 9%, 0.75) 65%,
+        hsla(0, 0%, 9%, 0.63) 70%,
+        hsla(0, 0%, 9%, 0.45) 75%,
+        hsla(0, 0%, 9%, 0.27) 80%,
+        hsla(0, 0%, 9%, 0.15) 85%,
+        hsla(0, 0%, 9%, 0.08) 90%,
+        hsla(0, 0%, 9%, 0.03) 95%,
+        hsla(0, 0%, 9%, 0)
       );
-      padding: 2em;
-      .headerDetailContainer {
-        display: flex;
-        gap: 3em;
-        align-items: center;
-        .posterPath {
-          width: 20em;
-          border-radius: 16px;
-          &:hover {
-            transform: scale(1.05);
-            transition: all 0.3s ease-in;
-          }
+      display: grid;
+      align-content: end;
+      width: 50%;
+      height: 100%;
+      .info-container {
+        padding: 2em;
+        .title-info {
+          font-weight: bolder;
+          margin-bottom: 1em;
         }
-        .detailInfo {
+        .title-info-metadata-wrapper {
           display: flex;
-          flex-direction: column;
-          gap: 1em;
-          .detailName {
-            font-weight: bolder;
-          }
-          .fact {
-            display: flex;
-            gap: 0.5em;
-          }
-          .tagLine {
-            font-style: italic;
-            opacity: 0.7;
-          }
-          .createdLayout {
+          align-items: center;
+          gap: 0.5em;
+          color: var(--text-color-mute);
+          margin-bottom: 1em;
+        }
+        .title-info-synopsis-talent {
+          width: 70%;
+          .title-info-talent {
+            margin-top: 2em;
             display: flex;
             gap: 1em;
-            .createdBy {
+            .created-by {
               align-items: center;
               width: fit-content;
               display: flex;
@@ -56,24 +71,4 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .detailLayout {
-    .headerDetail {
-      .filterBackground {
-        padding: 1em;
-        .headerDetailContainer {
-          display: flex;
-          gap: 1em;
-          flex-direction: column;
-          .detailInfo {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            .detailName {
-              font-size: 2em;
-            }
-          }
-        }
-      }
-    }
-  }
 }
