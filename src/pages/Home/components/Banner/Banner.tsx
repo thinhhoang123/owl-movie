@@ -28,7 +28,7 @@ const Banner: React.FC<IBannerProps> = (props) => {
   const sliderRef = React.useRef<Slider>(null);
 
   const { nowPlaying, isLoading } = useNowPlaying();
-  if (isLoading) return <Loading />;
+  if (isLoading) return null;
 
   const handleClose = () => {
     sliderRef.current?.slickPlay();

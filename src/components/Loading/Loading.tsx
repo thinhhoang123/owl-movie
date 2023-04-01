@@ -1,9 +1,15 @@
-import styles from './Loading.module.scss';
+import './Loading.scss';
 
 export default function Loading() {
   return (
-    <div className={styles.loadingComponent}>
-      <span className={styles.loader}></span>
-    </div>
+    <section className="loader-container">
+      <div className="loader-3">
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+      </div>
+    </section>
   );
 }
