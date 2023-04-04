@@ -13,7 +13,6 @@ GET {{hostName}}/tv/{{tvId}}/credits?api_key={{apiKey}}
 ### Content Ratings
 GET {{hostName}}/tv/{{tvId}}/content_ratings?api_key={{apiKey}}
 
-
 ### TV Seasons - Get details
 @season_number = 2
 GET {{hostName}}/tv/{{tvId}}/season/{{season_number}}?api_key={{apiKey}}

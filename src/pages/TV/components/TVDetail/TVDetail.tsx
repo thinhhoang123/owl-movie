@@ -9,6 +9,8 @@ import Loading from '../../../../components/Loading/Loading';
 import { useParams } from 'react-router-dom';
 import Error from '../../../Error/Error';
 import { VideosCategory } from '../../../../enums/Videos';
+import { IDropdownList } from '../../../../components/Dropdown/Dropdown';
+import { ISeasons } from '../../../../services/TV/model/IGetDetails';
 
 export interface ITVDetailProps {}
 
@@ -32,6 +34,16 @@ export default function TVDetail(props: ITVDetailProps) {
     getContentRatings.isLoading
   )
     return <Loading />;
+
+  const listSeason: IDropdownList[] = getTVDetail.response?.seasons.map(
+    (season: ISeasons) => {
+      return {
+        value: season.season_number,
+        label: season.name,
+      };
+    }
+  );
+
   const certification = getContentRatings.response.results.find(
     (rating) => rating.iso_3166_1 === 'US'
   );
@@ -41,6 +53,7 @@ export default function TVDetail(props: ITVDetailProps) {
       {...getCredits.response}
       certification={certification?.rating}
       category={VideosCategory.TV}
+      listSeason={listSeason}
     />
   );
 }

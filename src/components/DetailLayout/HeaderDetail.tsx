@@ -5,12 +5,14 @@ import { Avatar, Container, Typography } from '@mui/material';
 import moment from 'moment';
 import ButtonCP from '../Button/ButtonCP';
 import { IHeaderDetailProps } from './Model/IHeaderDetailProps';
+import Badge from '../Badges/Badges';
+import Image from '../Image/Image';
 
 const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
   const yearMovie = moment(props.first_air_date || '').year();
   return (
     <div className={styles['section-hero']}>
-      <img src={TMDBImage(props.backdrop_path)} alt="" />
+      <Image imgPath={props.backdrop_path} alt={props.name} />
       <div className={styles['hero-container']}>
         <div className={styles['info-container']}>
           <Typography variant="h4" className={styles['title-info']}>
@@ -27,16 +29,12 @@ const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
             </span>
             <span className={styles['item-space']}>|</span>
             <span className={styles['item-certification']}>
-              {props.certification}
+              <Badge label={props.certification} />
             </span>
             <span className={styles['item-space']}>|</span>
             <span className={styles['item-fact']}>
               {props.genres.map((gener) => {
-                return (
-                  <ButtonCP key={gener.id} className={styles['item-fact']}>
-                    {gener.name}
-                  </ButtonCP>
-                );
+                return <Badge key={gener.id} label={gener.name} />;
               })}
             </span>
           </div>
@@ -45,7 +43,7 @@ const HeaderDetail: React.FC<IHeaderDetailProps> = (props) => {
             <Typography variant="body1">{props.overview}</Typography>
             <div className={styles['title-watch-trailer']}>
               <ButtonCP onClick={() => props.handleWatchTrailer(props.id)}>
-                Watch trailer
+                👉 Watch trailer
               </ButtonCP>
             </div>
             <div className={styles['title-info-talent']}>

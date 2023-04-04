@@ -3,6 +3,7 @@ import styles from './MovieCard.module.scss';
 import { TMDBImage } from '../../setup/ultils/GetImageTmdb';
 import moment from 'moment-timezone';
 import ButtonCP from '../Button/ButtonCP';
+import Image from '../Image/Image';
 
 export interface IMovieCardProps {
   title?: string;
@@ -15,7 +16,8 @@ const MovieCard: React.FC<IMovieCardProps> = (props) => {
   const yearMovie = moment(props.releaseDate || '').year();
   return (
     <div className={styles.imgContainer}>
-      <img src={TMDBImage(props.backDrop)} loading="lazy"></img>
+      <Image imgPath={props.backDrop} alt="abc" />
+      {/* <img src={TMDBImage(props.backDrop)} loading="lazy"></img> */}
       <div className={styles.blockDescription}>
         <ButtonCP
           className={styles.descriptionBtn}

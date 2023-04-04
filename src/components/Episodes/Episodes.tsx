@@ -1,22 +1,31 @@
 import * as React from 'react';
 import styles from './Episodes.module.scss';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
-import { TMDBImage } from '../../setup/ultils/GetImageTmdb';
 import ListLayout from '../ListLayout/ListLayout';
+import Image from '../Image/Image';
+import Dropdown, { IDropdownList } from '../Dropdown/Dropdown';
+import { GetTvSeasonDetails } from '../../services/TV/TV';
+import Loading from '../Loading/Loading';
+import { useParams } from 'react-router-dom';
+import Error from '../../pages/Error/Error';
+import { ISeasons } from '../../services/TV/model/IGetDetails';
 export interface IEpisodesProps {}
 
 export default function Episodes(props: any) {
-  const [age, setAge] = React.useState('');
+  const { id } = useParams();
+  if (!id) return <Error />;
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+  const defaultSeason = props.listSeason.find((season: IDropdownList) => {
+    return season.value === 1;
+  }).value;
+
+  const [seasonNumber, setSeasonNumber] = React.useState(defaultSeason);
+  const getSeasonDetail = GetTvSeasonDetails(+id, seasonNumber);
+
+  const handleEpisodes = (season_number: string) => {
+    setSeasonNumber(+season_number);
   };
+
+  const response = getSeasonDetail.response;
 
   return (
     <section className={styles['episodes-container']}>
@@ -25,34 +34,25 @@ export default function Episodes(props: any) {
         <span className={styles['dot']}>&#x2022;</span>
         <span className={styles['title-tv']}>Stranger Things</span>
       </div>
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <div className={styles['title-info']}>
-        <p>Release year: 2016</p>
-        <p className={styles['title-overview']}>
-          Strange things are afoot in Hawkins, Indiana, where a young boy's
-          sudden disappearance unearths a young girl with otherworldly powers.
-        </p>
-      </div>
-      <div>
-        <ListLayout>
-          {episodes.episodes.map((episode, index) => {
-            return <EpisodesCard {...episode} key={index} />;
-          })}
-        </ListLayout>
-      </div>
+      <Dropdown
+        data={props.listSeason}
+        inputLabel="Episodes"
+        onChange={handleEpisodes}
+        defaultValue={defaultSeason}
+      />
+      {getSeasonDetail.isLoading ? (
+        <Loading />
+      ) : (
+        <div className={styles['title-info']}>
+          <p>Release year: {response.air_date}</p>
+          <p className={styles['title-overview']}>{response.overview}</p>
+          <ListLayout>
+            {response.episodes.map((episode, index) => {
+              return <EpisodesCard {...episode} key={index} />;
+            })}
+          </ListLayout>
+        </div>
+      )}
     </section>
   );
 }
@@ -60,16 +60,13 @@ export default function Episodes(props: any) {
 const EpisodesCard = (props: any) => {
   return (
     <div className={styles['episodes-card-container']}>
-      <img
-        src={TMDBImage(props.still_path)}
-        alt=""
-        className={styles['episodes-image']}
-      />
+      <Image imgPath={props.still_path} alt={props.name} />
+
       <p className={styles['episodes-name']}>
         {props.episode_number}. {}
         {props.name}
       </p>
-      <p className={styles['episodes-overview']}>{props.overview}</p>
+      <p className={styles['episodes-overview']}>🔎{props.overview}</p>
     </div>
   );
 };

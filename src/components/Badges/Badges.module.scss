@@ -1,0 +1,9 @@
+.badges {
+  color: var(--primary-color);
+  background-color: rgba($color: #300b0b, $alpha: 0.6);
+  display: inline-flex;
+  align-items: center;
+  font-size: 1em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.5em;
+}
