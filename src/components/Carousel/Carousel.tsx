@@ -13,7 +13,6 @@ const Carousel = React.forwardRef((props: ICarouselProps, ref) => {
     : {
         infinite: true,
         speed: 500,
-        centerMode: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: !isMobile,
