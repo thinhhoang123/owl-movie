@@ -1,0 +1,44 @@
+.banner__wrapper {
+  padding: 2em 0;
+  .banner-card__wrap {
+    .banner-card__image {
+      position: relative;
+    }
+    .banner_card_info__wrapper {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 2em;
+      background: linear-gradient(
+        0deg,
+        #2d2d2d 10%,
+        hsla(0, 0%, 18%, 0.95) 20%,
+        hsla(0, 0%, 18%, 0.93) 25%,
+        hsla(0, 0%, 18%, 0.91) 35%,
+        hsla(0, 0%, 18%, 0.86) 40%,
+        hsla(0, 0%, 18%, 0.83) 45%,
+        hsla(0, 0%, 18%, 0.78) 50%,
+        hsla(0, 0%, 18%, 0.74) 55%,
+        hsla(0, 0%, 18%, 0.72) 60%,
+        hsla(0, 0%, 18%, 0.65) 65%,
+        hsla(0, 0%, 18%, 0.55) 70%,
+        hsla(0, 0%, 18%, 0.45) 75%,
+        hsla(0, 0%, 18%, 0.27) 80%,
+        hsla(0, 0%, 18%, 0.15) 85%,
+        hsla(0, 0%, 18%, 0.08) 90%,
+        hsla(0, 0%, 18%, 0.03) 95%,
+        hsla(0, 0%, 18%, 0)
+      );
+      .banner_card_info__content {
+        .banner_card_info__move-title {
+        }
+        .banner_card_info__overview {
+          width: 50%;
+        }
+        .banner_card_info__imdb {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
