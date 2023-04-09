@@ -13,8 +13,6 @@ export default function Carousel(props: CarouselProps) {
       className="splide-custom"
       options={{
         type: 'loop',
-        focus: 'center',
-        perPage: 1,
         ...props.option,
       }}
     >

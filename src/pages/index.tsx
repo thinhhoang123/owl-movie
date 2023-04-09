@@ -1,9 +1,6 @@
 import styles from '@/styles/Home.module.scss';
 import { SplideSlide } from '@splidejs/react-splide';
-import {
-  GetMovieNowPlaying,
-  GetTrendingMovies,
-} from '@/services/moive/movieService';
+import { GetMovieNowPlaying } from '@/services/moive/movieService';
 import ImageTMDB from '@/components/ImageTMDB';
 import { IMovieList } from '@/services/moive/modal/INowPlayingModal';
 import Carousel from '@/components/Carousel';
@@ -11,21 +8,34 @@ import { isMobile } from 'react-device-detect';
 import Buttons from '@/components/Buttons';
 import MovieCard from '@/components/MovieCard';
 import Title from '@/components/Title';
+import { Divider } from '@mui/material';
+import { GetTrending } from '@/services/trendings/trendingService';
+import { MediaType } from '@/enum/mediaType';
 
 export default function Home() {
   const getMovieNowPlaying = GetMovieNowPlaying();
-  const getTrendingMovies = GetTrendingMovies('week');
+  const getTrendingMovies = GetTrending(MediaType.MOVIE, 'week');
+  const getTrendingTV = GetTrending(MediaType.TV, 'week');
 
-  if (getMovieNowPlaying.isLoading || getTrendingMovies.isLoading)
+  if (
+    getMovieNowPlaying.isLoading ||
+    getTrendingMovies.isLoading ||
+    getTrendingTV.isLoading
+  )
     return <p>Loading....</p>;
-  if (getMovieNowPlaying.isError || getTrendingMovies.isError)
+  if (
+    getMovieNowPlaying.isError ||
+    getTrendingMovies.isError ||
+    getTrendingTV.isError
+  )
     return <p>Error</p>;
 
   return (
     <>
       {/* Banner home page */}
-      <div className={styles['banner__wrapper']}>
+      <section className={styles['home-section__wrapper']}>
         <Carousel
+          option={{ perPage: 1 }}
           render={getMovieNowPlaying.response?.results?.map(
             (movie: IMovieList) => {
               return (
@@ -36,27 +46,69 @@ export default function Home() {
             }
           )}
         />
-      </div>
+      </section>
 
       {/* Trending */}
-      <Title title="Trending" />
-      <Carousel
-        option={{
-          perPage: 4,
-          rewind: true,
-          gap: 30,
-          pagination: false,
-        }}
-        render={getTrendingMovies.response?.results?.map(
-          (movie: IMovieList) => {
+      <section className={styles['home-section__wrapper']}>
+        <Title title="Trending movie" />
+        <Carousel
+          option={{
+            perPage: isMobile ? 1 : 5,
+            gap: 30,
+            pagination: false,
+          }}
+          render={getTrendingMovies.response?.results?.map(
+            (movie: IMovieList) => {
+              return (
+                <SplideSlide key={movie.id}>
+                  <MovieCard {...movie} />
+                </SplideSlide>
+              );
+            }
+          )}
+        />
+      </section>
+
+      <Divider />
+
+      {/* Trending TV show*/}
+      <section className={styles['home-section__wrapper']}>
+        <Title title="What's Popular on TV" />
+        <Carousel
+          option={{
+            perPage: isMobile ? 1 : 5,
+            gap: 30,
+            pagination: false,
+          }}
+          render={getTrendingTV.response?.results?.map((movie: IMovieList) => {
             return (
               <SplideSlide key={movie.id}>
                 <MovieCard {...movie} />
               </SplideSlide>
             );
-          }
-        )}
-      />
+          })}
+        />
+      </section>
+      <Divider />
+
+      {/* Trending TV show*/}
+      <section className={styles['home-section__wrapper']}>
+        <Title title="What's Popular on TV" />
+        <Carousel
+          option={{
+            perPage: isMobile ? 1 : 5,
+            gap: 30,
+            pagination: false,
+          }}
+          render={getTrendingTV.response?.results?.map((movie: IMovieList) => {
+            return (
+              <SplideSlide key={movie.id}>
+                <MovieCard {...movie} />
+              </SplideSlide>
+            );
+          })}
+        />
+      </section>
     </>
   );
 }

@@ -1,6 +1,5 @@
 .title__wrapper {
   position: relative;
-  margin-bottom: 1.5rem;
   padding-left: 0.5rem;
   &:after {
     content: '';
@@ -12,5 +11,6 @@
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: 20px;
+    box-shadow: 0 0 10px var(--primary-color);
   }
 }

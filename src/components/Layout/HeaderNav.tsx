@@ -9,7 +9,7 @@ export interface IHeaderNavProps {}
 
 const links = [
   { path: '/', page: 'Home' },
-  { path: '/test', page: 'test' },
+  { path: '/tv', page: 'TV Shows' },
 ];
 
 export default function HeaderNav(props: IHeaderNavProps) {
