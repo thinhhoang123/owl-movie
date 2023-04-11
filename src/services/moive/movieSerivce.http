@@ -4,3 +4,6 @@
 
 ### Now playing
 GET {{hostName}}/movie/now_playing?api_key={{apiKey}}
+
+### Get Popular
+GET {{hostName}}/movie/popular?api_key={{apiKey}}

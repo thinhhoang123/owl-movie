@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { isMobile } from 'react-device-detect';
 
 export interface IHeaderNavProps {}
 
@@ -27,17 +28,25 @@ export default function HeaderNav(props: IHeaderNavProps) {
             />
             <p>OWL MOVIE</p>
           </div>
-          <div className={styles['nav-header__links']}>
-            {links.map((link) => (
-              <Link
-                href={link.path}
-                key={link.page}
-                className={router.pathname == link.path ? styles['active'] : ''}
-              >
-                {link.page}
-              </Link>
-            ))}
-          </div>
+          {isMobile ? (
+            <>
+              <i className="fad fa-bars"></i>
+            </>
+          ) : (
+            <div className={styles['nav-header__links']}>
+              {links.map((link) => (
+                <Link
+                  href={link.path}
+                  key={link.page}
+                  className={
+                    router.pathname == link.path ? styles['active'] : ''
+                  }
+                >
+                  {link.page}
+                </Link>
+              ))}
+            </div>
+          )}
         </nav>
       </Container>
     </div>

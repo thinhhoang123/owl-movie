@@ -1,5 +1,7 @@
 .home-section__wrapper {
-  padding: 2em 0;
+  img {
+    border-radius: 0 !important;
+  }
   .banner-card__wrap {
     .banner-card__image {
       position: relative;

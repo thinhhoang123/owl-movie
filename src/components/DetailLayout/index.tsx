@@ -15,7 +15,7 @@ export default function DetailLayout(props: any) {
     <Container maxWidth="xl">
       {/* --- Header begin --- */}
       <div className={styles['section-hero']}>
-        <ImageTMDB url={props.backdrop_path} className={styles['hero-image']} />
+        <ImageTMDB url={props.backdrop_path} />
         <div className={styles['hero-container']}>
           <div className={styles['info-container']}>
             <h2 className={styles['title-info']}>
@@ -43,10 +43,13 @@ export default function DetailLayout(props: any) {
             </div>
 
             <div className={styles['title-info-synopsis-talent']}>
-              <p>{props.overview}</p>
+              <p className={styles['title-overview']}>{props.overview}</p>
               <div className={styles['title-watch-trailer']}>
-                <Buttons onClick={() => props.handleWatchTrailer(props.id)}>
-                  👉 Watch trailer
+                <Buttons
+                  onClick={() => {}}
+                  icon={<i className="fad fa-play-circle"></i>}
+                >
+                  Watch trailer
                 </Buttons>
               </div>
               <div className={styles['title-info-talent']}>

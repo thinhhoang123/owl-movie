@@ -1,6 +1,9 @@
 import styles from '@/styles/Home.module.scss';
 import { SplideSlide } from '@splidejs/react-splide';
-import { GetMovieNowPlaying } from '@/services/moive/movieService';
+import {
+  GetMovieNowPlaying,
+  GetPopularMovie,
+} from '@/services/moive/movieService';
 import ImageTMDB from '@/components/ImageTMDB';
 import { IMovieList } from '@/services/moive/modal/INowPlayingModal';
 import Carousel from '@/components/Carousel';
@@ -11,22 +14,26 @@ import Title from '@/components/Title';
 import { Divider } from '@mui/material';
 import { GetTrending } from '@/services/trendings/trendingService';
 import { MediaType } from '@/enum/mediaType';
+import { TimeWindow } from '@/enum/timeWindow';
 
 export default function Home() {
   const getMovieNowPlaying = GetMovieNowPlaying();
-  const getTrendingMovies = GetTrending(MediaType.MOVIE, 'week');
-  const getTrendingTV = GetTrending(MediaType.TV, 'week');
+  const getTrendingMovies = GetTrending(MediaType.MOVIE, TimeWindow.WEEK);
+  const getTrendingTV = GetTrending(MediaType.TV, TimeWindow.WEEK);
+  const getPopularMovie = GetPopularMovie();
 
   if (
     getMovieNowPlaying.isLoading ||
     getTrendingMovies.isLoading ||
-    getTrendingTV.isLoading
+    getTrendingTV.isLoading ||
+    getPopularMovie.isLoading
   )
     return <p>Loading....</p>;
   if (
     getMovieNowPlaying.isError ||
     getTrendingMovies.isError ||
-    getTrendingTV.isError
+    getTrendingTV.isError ||
+    getPopularMovie.isError
   )
     return <p>Error</p>;
 
@@ -49,7 +56,7 @@ export default function Home() {
       </section>
 
       {/* Trending */}
-      <section className={styles['home-section__wrapper']}>
+      <section className={styles['trending-section__wrapper']}>
         <Title title="Trending movie" />
         <Carousel
           option={{
@@ -72,7 +79,7 @@ export default function Home() {
       <Divider />
 
       {/* Trending TV show*/}
-      <section className={styles['home-section__wrapper']}>
+      <section className={styles['trending-tv-section__wrapper']}>
         <Title title="What's Popular on TV" />
         <Carousel
           option={{
@@ -91,24 +98,27 @@ export default function Home() {
       </section>
       <Divider />
 
-      {/* Trending TV show*/}
-      <section className={styles['home-section__wrapper']}>
-        <Title title="What's Popular on TV" />
+      {/* In theaters */}
+      <section className={styles['theaters-section__wrapper']}>
+        <Title title="In theaters" />
         <Carousel
           option={{
             perPage: isMobile ? 1 : 5,
             gap: 30,
             pagination: false,
           }}
-          render={getTrendingTV.response?.results?.map((movie: IMovieList) => {
-            return (
-              <SplideSlide key={movie.id}>
-                <MovieCard {...movie} />
-              </SplideSlide>
-            );
-          })}
+          render={getPopularMovie.response?.results?.map(
+            (movie: IMovieList) => {
+              return (
+                <SplideSlide key={movie.id}>
+                  <MovieCard {...movie} />
+                </SplideSlide>
+              );
+            }
+          )}
         />
       </section>
+      <Divider />
     </>
   );
 }
@@ -139,4 +149,3 @@ const BannerCard: React.FC<IMovieList> = (props) => {
     </div>
   );
 };
-
