@@ -30,16 +30,19 @@ export default function TVDetail(props: ITVDetailProps) {
   if (getDetailTV.isError || getCredits.isError || getContentRatings.isError)
     return <p>Loading....</p>;
 
-  const listSeason: IDropdownList[] | undefined =
-    getDetailTV.response?.seasons.map((season: ISeasons) => {
-      return {
-        value: season.season_number,
-        label: season.name,
-      };
-    });
+  const listSeason: IDropdownList[] = getDetailTV.response
+    ? getDetailTV.response.seasons.map((season: ISeasons) => {
+        return {
+          value: season.season_number,
+          label: season.name,
+        };
+      })
+    : [];
+
   const certification = getContentRatings.response?.results.find(
     (rating) => rating.iso_3166_1 === 'US'
   );
+
   return (
     <DetailLayout
       {...getDetailTV.response}

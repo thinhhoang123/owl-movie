@@ -29,3 +29,11 @@
     box-shadow: 0 0 10px var(--primary-color);
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .splide-custom {
+    .splide__arrows {
+      display: none;
+    }
+  }
+}

@@ -5,7 +5,12 @@ import ListLayout from '../ListLayout';
 import ImageTMDB from '../ImageTMDB';
 import { GetTvSeasonDetails } from '@/services/tv/tvService';
 import Title from '../Title';
-export interface IEpisodesProps {}
+
+export interface IEpisodesProps {
+  id: number;
+  name: string;
+  listSeason: IDropdownList[];
+}
 
 export default function Episodes(props: any) {
   const defaultSeason = props.listSeason.find((season: IDropdownList) => {
@@ -47,7 +52,15 @@ export default function Episodes(props: any) {
           <ListLayout>
             {getSeasonDetail.response?.episodes.map(
               (episode: any, index: number) => {
-                return <EpisodesCard {...episode} key={index} />;
+                return (
+                  <EpisodesCard
+                    episode_number={episode.episode_number}
+                    still_path={episode.still_path}
+                    overview={episode.overview}
+                    name={episode.name}
+                    key={index}
+                  />
+                );
               }
             )}
           </ListLayout>
@@ -56,7 +69,15 @@ export default function Episodes(props: any) {
     </section>
   );
 }
-const EpisodesCard = (props: any) => {
+
+export interface IEpisodesCardProps {
+  episode_number: number;
+  still_path: string;
+  overview: string;
+  name: string;
+}
+
+const EpisodesCard = (props: IEpisodesCardProps) => {
   return (
     <div className={styles['episodes-card-container']}>
       <ImageTMDB url={props.still_path} />
@@ -64,7 +85,7 @@ const EpisodesCard = (props: any) => {
         {props.episode_number}. {}
         {props.name}
       </p>
-      <p className={styles['episodes-overview']}>🔎{props.overview}</p>
+      <p className={styles['episodes-overview']}>🔉{props.overview}</p>
     </div>
   );
 };

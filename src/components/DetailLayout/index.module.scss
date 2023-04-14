@@ -1,14 +1,8 @@
 .section-hero {
-  .hero-image {
-    .ImageTMDB_image {
-      box-shadow: none !important;
-    }
-
-    img {
-      box-shadow: none !important;
-      width: 100%;
-      border-radius: var(--border-radius);
-    }
+  img {
+    box-shadow: none !important;
+    width: 100%;
+    border-radius: 0 0 16px 16px !important;
   }
   box-shadow: none;
   position: relative;
@@ -17,7 +11,6 @@
   .hero-container {
     position: absolute;
     top: 0;
-    border-radius: var(--border-radius);
     background: linear-gradient(
       90deg,
       #2d2d2d 10%,
@@ -68,6 +61,9 @@
         }
       }
       .title-info-synopsis-talent {
+        .title-overview {
+          color: var(--text-color-secondary);
+        }
         width: 80%;
         .title-watch-trailer {
           margin: 1em 0;
@@ -95,6 +91,7 @@
       background: none;
       width: 100%;
       .info-container {
+        padding: 0.5em;
         .title-info {
         }
         .title-info-metadata-wrapper {
