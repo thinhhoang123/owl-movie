@@ -2,6 +2,7 @@ import styles from './index.module.scss';
 import * as React from 'react';
 
 export interface IBadgeProps {
+  key?: any;
   label: string;
 }
 

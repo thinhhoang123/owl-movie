@@ -6,4 +6,7 @@
 GET {{hostName}}/movie/now_playing?api_key={{apiKey}}
 
 ### Get Popular
-GET {{hostName}}/movie/popular?api_key={{apiKey}}
+GET {{hostName}}/movie/popular?api_key={{apiKey}}&language=en-US&page=1
+
+###
+GET {{hostName}}/genre/movie/list?api_key={{apiKey}}&language=en-US

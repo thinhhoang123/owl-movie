@@ -13,15 +13,9 @@ const MovieCard: React.FC<IMovieCardProps> = (props) => {
   return (
     <div className={styles['movie-card__wrapper']} onClick={handleClick}>
       <ImageTMDB
-        url={props?.backdrop_path}
+        url={props?.poster_path}
         className={styles['movie-card__image']}
       />
-      <p className={styles.title}>
-        <span>
-          {2019} <span className={styles.dot}>&#x2022;</span>
-        </span>
-        🎬 {props.media_type == MediaType.TV ? props.name : props.title}
-      </p>
     </div>
   );
 };

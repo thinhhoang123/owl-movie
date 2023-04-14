@@ -17,10 +17,10 @@ export default function ImageTMDB(props: IImageTMDBProps) {
         alt="props.url"
         fill
         className={styles['image']}
-        loading="lazy"
         sizes="100vw,
         50vw,
         33vw"
+        priority
       />
     </div>
   );
