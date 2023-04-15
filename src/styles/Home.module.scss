@@ -47,9 +47,18 @@
     .banner-card__wrap {
       .banner_card_info__wrapper {
         flex-direction: column-reverse;
-
+        .banner_card_poster {
+          width: 15em;
+        }
         .banner_card_info__content {
           width: 100%;
+        }
+        .banner_card_info__overview {
+          width: 100%;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
         }
       }
     }

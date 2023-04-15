@@ -157,7 +157,6 @@ export default function Home() {
 }
 
 const BannerCard: React.FC<any> = (props) => {
-  console.log(props);
   return (
     <div
       className={styles['banner-card__wrap']}
