@@ -1,4 +1,4 @@
-import { IMovieList } from '../../moive/modal/INowPlayingModal';
+import { IMovieList } from './INowPlayingModal';
 
 export interface ITrendingResponse {
   page: number;

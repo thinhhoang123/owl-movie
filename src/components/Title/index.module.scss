@@ -2,6 +2,13 @@
   position: relative;
   padding-left: 0.5rem;
   margin: 1em 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  width: fit-content;
+  i {
+    color: var(--primary-color);
+  }
   &:after {
     content: '';
     width: 0.43rem;
@@ -13,5 +20,8 @@
     transform: translate(-50%, -50%);
     border-radius: 20px;
     box-shadow: 0 0 10px var(--primary-color);
+  }
+  &:hover {
+    cursor: pointer;
   }
 }

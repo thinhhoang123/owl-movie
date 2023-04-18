@@ -1,5 +1,5 @@
 import { AxiosGet } from '@/setup/axios/axiosMethod';
-import { ITrendingResponse } from './modal/ITrendingModal';
+import { ITrendingResponse } from '../../modal/ITrendingModal';
 import { MediaType } from '@/enum/mediaType';
 import useSWR from 'swr';
 

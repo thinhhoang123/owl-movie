@@ -1,9 +1,9 @@
 import useSWR from 'swr';
-import { IGetDetails } from './modal/IGetDetails';
 import { AxiosGet } from '@/setup/axios/axiosMethod';
-import { IGetContentRatings } from './modal/IGetContentRatings';
-import { IGetTvSeasonDetails } from './modal/IGetTvSeasonDetails';
-import { IGetCredits } from './modal/IGetCredits';
+import { IGetContentRatings } from '../../modal/IGetContentRatings';
+import { IGetDetails } from '@/modal/IGetDetails';
+import { IGetCredits } from '@/modal/IGetCredits';
+import { IGetTvSeasonDetails } from '@/modal/IGetTvSeasonDetails';
 
 export function GetDetail(
   tvId: string | string[] | undefined,

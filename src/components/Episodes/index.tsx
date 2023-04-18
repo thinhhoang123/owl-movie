@@ -5,6 +5,7 @@ import ListLayout from '../ListLayout';
 import ImageTMDB from '../ImageTMDB';
 import { GetTvSeasonDetails } from '@/services/tv/tvService';
 import Title from '../Title';
+import moment from 'moment';
 
 export interface IEpisodesProps {
   id: number;
@@ -23,6 +24,7 @@ export default function Episodes(props: any) {
     seasonNumber,
     Boolean(props.id)
   );
+  const yearRelease = moment(getSeasonDetail.response?.air_date).year();
 
   const handleEpisodes = (season_number: string) => {
     setSeasonNumber(+season_number);
@@ -45,7 +47,7 @@ export default function Episodes(props: any) {
         <p>loading...</p>
       ) : (
         <div className={styles['title-info']}>
-          <p>Release year: {getSeasonDetail.response?.air_date}</p>
+          <p>Release year: {yearRelease}</p>
           <p className={styles['title-overview']}>
             {getSeasonDetail.response?.overview}
           </p>

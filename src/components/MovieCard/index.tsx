@@ -1,10 +1,11 @@
-import { IMovieList } from '@/services/moive/modal/INowPlayingModal';
 import * as React from 'react';
 import ImageTMDB from '../ImageTMDB';
 import styles from './index.module.scss';
 import { MediaType } from '@/enum/mediaType';
 import { useRouter } from 'next/router';
+import { IMovieList } from '@/modal/INowPlayingModal';
 export interface IMovieCardProps extends IMovieList {}
+
 const MovieCard: React.FC<IMovieCardProps> = (props) => {
   const router = useRouter();
   const handleClick = () => {

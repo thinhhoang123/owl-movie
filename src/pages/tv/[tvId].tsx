@@ -1,7 +1,7 @@
 import DetailLayout from '@/components/DetailLayout';
 import { IDropdownList } from '@/components/Dropdown';
 import { MediaType } from '@/enum/mediaType';
-import { ISeasons } from '@/services/tv/modal/IGetDetails';
+import { ISeasons } from '@/modal/IGetDetails';
 import {
   GetContentRatings,
   GetCredits,
@@ -42,10 +42,10 @@ export default function TVDetail(props: ITVDetailProps) {
   const certification = getContentRatings.response?.results.find(
     (rating) => rating.iso_3166_1 === 'US'
   );
-
   return (
     <DetailLayout
       {...getDetailTV.response}
+      {...getCredits.response}
       certification={certification?.rating}
       listSeason={listSeason}
       mediaType={MediaType.TV}

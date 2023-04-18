@@ -4,9 +4,9 @@ import {
   GetGenersMovie,
   GetMovieNowPlaying,
   GetPopularMovie,
+  GetTopRateMovie,
 } from '@/services/moive/movieService';
 import ImageTMDB from '@/components/ImageTMDB';
-import { IMovieList } from '@/services/moive/modal/INowPlayingModal';
 import Carousel from '@/components/Carousel';
 import { isMobile } from 'react-device-detect';
 import Buttons from '@/components/Buttons';
@@ -18,6 +18,7 @@ import { MediaType } from '@/enum/mediaType';
 import { TimeWindow } from '@/enum/timeWindow';
 import { TMDBImageURL } from '@/utils/TMDBImageURL';
 import Badge from '@/components/Badges';
+import { IMovieList } from '@/modal/INowPlayingModal';
 
 export default function Home() {
   const getMovieNowPlaying = GetMovieNowPlaying();
@@ -25,13 +26,15 @@ export default function Home() {
   const getTrendingTV = GetTrending(MediaType.TV, TimeWindow.DAY);
   const getPopularMovie = GetPopularMovie();
   const getGenersMovie = GetGenersMovie();
+  const getTopRateMovie = GetTopRateMovie();
 
   if (
     getMovieNowPlaying.isLoading ||
     getTrendingMovies.isLoading ||
     getTrendingTV.isLoading ||
     getPopularMovie.isLoading ||
-    getGenersMovie.isLoading
+    getGenersMovie.isLoading ||
+    getTopRateMovie.isLoading
   )
     return <p>Loading....</p>;
   if (
@@ -39,7 +42,8 @@ export default function Home() {
     getTrendingMovies.isError ||
     getTrendingTV.isError ||
     getPopularMovie.isError ||
-    getGenersMovie.isError
+    getGenersMovie.isError ||
+    getTopRateMovie.isError
   )
     return <p>Error</p>;
 
@@ -144,14 +148,43 @@ export default function Home() {
             (movie: IMovieList) => {
               return (
                 <SplideSlide key={movie.id}>
-                  <MovieCard {...movie} />
+                  <MovieCard {...movie} media_type={MediaType.MOVIE} />
                 </SplideSlide>
               );
             }
           )}
         />
       </section>
-      {/* <Divider /> */}
+
+      {/* Top rate */}
+      <section className={styles['theaters-section__wrapper']}>
+        <Title title="Top Rated Movies" />
+        <Carousel
+          option={{
+            perPage: isMobile ? 1 : 5,
+            gap: 30,
+            pagination: false,
+            breakpoints: {
+              600: {
+                perPage: 1,
+              },
+              900: {
+                perPage: 3,
+              },
+            },
+          }}
+          render={getTopRateMovie.response?.results?.map(
+            (movie: IMovieList) => {
+              return (
+                <SplideSlide key={movie.id}>
+                  <MovieCard {...movie} media_type={MediaType.MOVIE} />
+                </SplideSlide>
+              );
+            }
+          )}
+        />
+      </section>
+      <Divider />
     </>
   );
 }
