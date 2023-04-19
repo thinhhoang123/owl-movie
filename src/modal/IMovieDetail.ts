@@ -1,9 +1,9 @@
+import { IGenre } from './IGener';
 import {
   IProductionCompanies,
   IProductionCountries,
   ISpokenLanguages,
-} from '@/services/tv/modal/IGetDetails';
-import { IGenre } from './IGener';
+} from './IGetDetails';
 
 export interface IMovieDetail {
   adult: boolean;
