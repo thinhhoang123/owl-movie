@@ -14,12 +14,12 @@ export default function ImageTMDB(props: IImageTMDBProps) {
     <div className={styles['image-container']}>
       <Image
         src={TMDBImageURL(props.url)}
-        alt="props.url"
+        alt={TMDBImageURL(props.url)}
         fill
         className={styles['image']}
         sizes="100vw,
-        50vw,
-        33vw"
+      50vw,
+      33vw"
         priority
       />
     </div>
