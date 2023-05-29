@@ -1,7 +1,6 @@
 import styles from '@/styles/Home.module.scss';
 import { SplideSlide } from '@splidejs/react-splide';
 import {
-  GetGenersMovie,
   GetMovieNowPlaying,
   GetPopularMovie,
   GetTopRateMovie,
@@ -19,13 +18,14 @@ import { TimeWindow } from '@/enum/timeWindow';
 import { TMDBImageURL } from '@/utils/TMDBImageURL';
 import Badge from '@/components/Badges';
 import { IMovieList } from '@/modal/INowPlayingModal';
+import { GetGenres } from '@/services/genres/genresService';
 
 export default function Home() {
   const getMovieNowPlaying = GetMovieNowPlaying();
   const getTrendingMovies = GetTrending(MediaType.MOVIE, TimeWindow.DAY);
   const getTrendingTV = GetTrending(MediaType.TV, TimeWindow.DAY);
   const getPopularMovie = GetPopularMovie();
-  const getGenersMovie = GetGenersMovie();
+  const getGenresMovie = GetGenres(MediaType.MOVIE);
   const getTopRateMovie = GetTopRateMovie();
 
   if (
@@ -33,7 +33,7 @@ export default function Home() {
     getTrendingMovies.isLoading ||
     getTrendingTV.isLoading ||
     getPopularMovie.isLoading ||
-    getGenersMovie.isLoading ||
+    getGenresMovie.isLoading ||
     getTopRateMovie.isLoading
   )
     return <p>Loading....</p>;
@@ -42,7 +42,7 @@ export default function Home() {
     getTrendingMovies.isError ||
     getTrendingTV.isError ||
     getPopularMovie.isError ||
-    getGenersMovie.isError ||
+    getGenresMovie.isError ||
     getTopRateMovie.isError
   )
     return <p>Error</p>;
@@ -59,7 +59,7 @@ export default function Home() {
                 <SplideSlide key={movie.id}>
                   <BannerCard
                     {...movie}
-                    genersMovie={getGenersMovie.response?.genres}
+                    GenresMovie={getGenresMovie.response?.genres}
                   />
                 </SplideSlide>
               );
@@ -212,9 +212,9 @@ const BannerCard: React.FC<any> = (props) => {
                 <Badge
                   key={gener}
                   label={
-                    props.genersMovie
-                      ? props.genersMovie.find(
-                          (geners: any) => geners.id == gener
+                    props.GenresMovie
+                      ? props.GenresMovie.find(
+                          (Genres: any) => Genres.id == gener
                         )?.name
                       : null
                   }

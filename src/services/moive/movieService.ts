@@ -31,18 +31,6 @@ export function GetPopularMovie() {
   };
 }
 
-export function GetGenersMovie() {
-  const { data, error, isLoading } = useSWR(
-    `genre/movie/list`,
-    AxiosGet<IGenres>
-  );
-  return {
-    response: data,
-    isLoading,
-    isError: error,
-  };
-}
-
 export function GetDetailMovie(
   movieId: string | string[] | undefined,
   shouldFetch?: boolean

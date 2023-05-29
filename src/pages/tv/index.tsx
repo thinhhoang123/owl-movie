@@ -1,8 +1,10 @@
+import FilterHeader from '@/components/FilterHeader';
 import Layout from '@/components/Layout';
 import ListLayout from '@/components/ListLayout';
 import MovieCard from '@/components/MovieCard';
 import { MediaType } from '@/enum/mediaType';
 import { IMovieList } from '@/modal/INowPlayingModal';
+import { GetGenres } from '@/services/genres/genresService';
 import { GetMovieNowPlaying } from '@/services/moive/movieService';
 import {
   Accordion,
@@ -18,13 +20,22 @@ export interface ITestProps {}
 
 export default function Test(props: ITestProps) {
   const getMovieNowPlaying = GetMovieNowPlaying();
-  if (getMovieNowPlaying.isLoading) return <p>Loading....</p>;
-  if (getMovieNowPlaying.isError) return <p>Error</p>;
+  const getGenresTV = GetGenres(MediaType.TV);
+  if (
+    getMovieNowPlaying.isLoading ||
+    getGenresTV.isLoading ||
+    !getGenresTV.response
+  )
+    return <p>Loading....</p>;
+  if (getMovieNowPlaying.isError || getGenresTV.isError) return <p>Error</p>;
+
+  const handleChangePage = (e: React.ChangeEvent<any>, page: number) => {
+    console.log(page);
+  };
 
   return (
     <>
-      <h2>TV shows</h2>
-
+      <FilterHeader genres={getGenresTV.response} />
       <ListLayout widthCol={250}>
         {getMovieNowPlaying.response?.results?.map((movie: IMovieList) => {
           return (
@@ -44,6 +55,7 @@ export default function Test(props: ITestProps) {
           color="primary"
           showFirstButton
           showLastButton
+          onChange={handleChangePage}
         />
       </div>
     </>

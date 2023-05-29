@@ -11,7 +11,7 @@ export interface ISelectProps {
   onChange: (value: string) => void;
   data: IDropdownList[];
   inputLabel?: string;
-  defaultValue: number;
+  defaultValue?: number;
 }
 
 export interface IDropdownList {
@@ -20,7 +20,9 @@ export interface IDropdownList {
 }
 
 export default function Dropdown(props: ISelectProps) {
-  const [selected, setSelected] = React.useState(props.defaultValue.toString());
+  const [selected, setSelected] = React.useState(
+    props.defaultValue ? props.defaultValue.toString() : ''
+  );
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelected(event.target.value as string);
