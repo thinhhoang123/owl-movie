@@ -19,6 +19,8 @@ import { TMDBImageURL } from '@/utils/TMDBImageURL';
 import Badge from '@/components/Badges';
 import { IMovieList } from '@/modal/INowPlayingModal';
 import { GetGenres } from '@/services/genres/genresService';
+import ReactYoutube from '@/components/ReactYoutube';
+import * as React from 'react';
 
 export default function Home() {
   const getMovieNowPlaying = GetMovieNowPlaying();
@@ -27,6 +29,9 @@ export default function Home() {
   const getPopularMovie = GetPopularMovie();
   const getGenresMovie = GetGenres(MediaType.MOVIE);
   const getTopRateMovie = GetTopRateMovie();
+
+  const [open, setOpen] = React.useState(false);
+  const [movieId, setMovieId] = React.useState();
 
   if (
     getMovieNowPlaying.isLoading ||
@@ -47,6 +52,15 @@ export default function Home() {
   )
     return <p>Error</p>;
 
+  const handleOpenTrailer = (data: any) => {
+    console.log(data);
+    setMovieId(data.id);
+    setOpen(true);
+  };
+  const handleCloseTrailer = (data: boolean) => {
+    setOpen(data);
+  };
+
   return (
     <>
       {/* Banner home page */}
@@ -60,6 +74,7 @@ export default function Home() {
                   <BannerCard
                     {...movie}
                     GenresMovie={getGenresMovie.response?.genres}
+                    openTrailer={handleOpenTrailer}
                   />
                 </SplideSlide>
               );
@@ -185,6 +200,12 @@ export default function Home() {
         />
       </section>
       <Divider />
+      <ReactYoutube
+        isOpen={open}
+        close={handleCloseTrailer}
+        videoId={movieId}
+        mediaType={MediaType.MOVIE}
+      />
     </>
   );
 }
@@ -228,6 +249,7 @@ const BannerCard: React.FC<any> = (props) => {
           <Buttons
             icon={<i className="fad fa-play-circle"></i>}
             className={styles['banner_card_info__watch_trailer']}
+            onClick={() => props.openTrailer(props)}
           >
             Watch trailer
           </Buttons>

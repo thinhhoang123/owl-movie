@@ -19,6 +19,7 @@ export default function Buttons(props: IButtonsProps) {
       className={[styles['custom-btn'], props.className].join(' ')}
       variant="contained"
       size="small"
+      onClick={props.onClick}
     >
       {props.children}
     </Button>
