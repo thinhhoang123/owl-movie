@@ -14,9 +14,12 @@ export interface IReactYoutubeProps {
 
 export default function ReactYoutube(props: IReactYoutubeProps) {
   const getVideos = GetVideos(props.mediaType, props.videoId);
+  const reactYoutubeRef = React.useRef<any>();
 
-  const handleClose = () => {
+  const handleClose = (e: any) => {
     props.close(false);
+    console.log(reactYoutubeRef.current);
+    reactYoutubeRef.current.props.onPause();
   };
 
   const opts = {
@@ -37,12 +40,10 @@ export default function ReactYoutube(props: IReactYoutubeProps) {
     );
   });
 
-  console.log(videoIdTrailer);
-
-  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  };
+  // const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+  //   // access to player in all event handlers via event.target
+  //   event.target.pauseVideo();
+  // };
 
   return (
     <Backdrop
@@ -54,7 +55,8 @@ export default function ReactYoutube(props: IReactYoutubeProps) {
         videoId={videoIdTrailer?.key}
         opts={opts}
         loading={'lazy'}
-        onReady={onPlayerReady}
+        // onReady={onPlayerReady}
+        ref={reactYoutubeRef}
       />
     </Backdrop>
   );

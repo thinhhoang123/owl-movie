@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { IMovieList } from '@/modal/INowPlayingModal';
 export interface IMovieCardProps extends IMovieList {}
 
-const MovieCard: React.FC<IMovieCardProps> = (props) => {
+const MovieCard: React.FC<IMovieCardProps> = (props: any) => {
   const router = useRouter();
   const handleClick = () => {
     router.push(`/${props.media_type}/${props.id}`);

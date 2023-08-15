@@ -53,7 +53,6 @@ export default function Home() {
     return <p>Error</p>;
 
   const handleOpenTrailer = (data: any) => {
-    console.log(data);
     setMovieId(data.id);
     setOpen(true);
   };

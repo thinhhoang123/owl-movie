@@ -8,10 +8,11 @@ import {
 import * as React from 'react';
 
 export interface ISelectProps {
-  onChange: (value: string) => void;
+  onChange: (value: object) => void;
   data: IDropdownList[];
   inputLabel?: string;
   defaultValue?: number;
+  name: string;
 }
 
 export interface IDropdownList {
@@ -26,7 +27,7 @@ export default function Dropdown(props: ISelectProps) {
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelected(event.target.value as string);
-    props.onChange(event.target.value);
+    props.onChange({ key: props.name, value: event.target.value });
   };
 
   return (
@@ -39,10 +40,13 @@ export default function Dropdown(props: ISelectProps) {
         label="Age"
         onChange={handleChange}
       >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
         {props.data.map((menu) => {
           return (
             <MenuItem key={menu.value} value={menu.value}>
-              {menu.label}
+              <em>{menu.label}</em>
             </MenuItem>
           );
         })}
