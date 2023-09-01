@@ -20,13 +20,7 @@ export default function HeaderNav(props: IHeaderNavProps) {
       <Container maxWidth="xl" className={styles['nav-header__container']}>
         <nav className={styles['nav-header__content']}>
           <div className={styles['nav-header__logo']}>
-            <Image
-              src="/owl-movie.svg"
-              alt="OWL-MOVIE"
-              width={30}
-              height={30}
-            />
-            <p>OWL MOVIE</p>
+            <Image src="/logo.svg" alt="OWL-MOVIE" width={30} height={30} />
           </div>
           {isMobile ? (
             <div>

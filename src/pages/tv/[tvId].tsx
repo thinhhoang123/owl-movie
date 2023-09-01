@@ -42,6 +42,7 @@ export default function TVDetail(props: ITVDetailProps) {
   const certification = getContentRatings.response?.results.find(
     (rating) => rating.iso_3166_1 === 'US'
   );
+
   return (
     <DetailLayout
       {...getDetailTV.response}

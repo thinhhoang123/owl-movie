@@ -6,8 +6,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    border-radius: 0 0 2em 2em;
 
     .banner_card_info__wrapper {
+      border-radius: 0 0 2em 2em;
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -18,6 +20,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       .banner_card_poster {
         width: 20em;
       }

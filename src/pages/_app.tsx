@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '@/layout';
 import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { Poppins } from 'next/font/google';
@@ -20,4 +20,3 @@ export default function App({ Component, pageProps }: AppProps) {
     </Layout>
   );
 }
-

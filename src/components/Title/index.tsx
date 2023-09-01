@@ -6,8 +6,10 @@ export interface ITitleProps {
 }
 
 export default function Title(props: ITitleProps) {
+  const classNames =
+    styles[!props.onClick ? 'title__wrapper' : 'title__wrapper can-click'];
   return (
-    <div className={styles['title__wrapper']}>
+    <div className={classNames}>
       <h4>{props.title}</h4>
       {props.onClick ? <i className="fad fa-chevron-double-right"></i> : null}
     </div>

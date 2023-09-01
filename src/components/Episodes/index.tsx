@@ -6,6 +6,9 @@ import ImageTMDB from '../ImageTMDB';
 import { GetTvSeasonDetails } from '@/services/tv/tvService';
 import Title from '../Title';
 import moment from 'moment';
+import Carousel from '../Carousel';
+import { isMobile } from 'react-device-detect';
+import { SplideSlide } from '@splidejs/react-splide';
 
 export interface IEpisodesProps {
   id: number;
@@ -51,21 +54,38 @@ export default function Episodes(props: any) {
           <p className={styles['title-overview']}>
             {getSeasonDetail.response?.overview}
           </p>
-          <ListLayout>
-            {getSeasonDetail.response?.episodes.map(
-              (episode: any, index: number) => {
+          <Carousel
+            option={{
+              perPage: isMobile ? 1 : 5,
+              gap: 30,
+              pagination: false,
+              breakpoints: {
+                600: {
+                  perPage: 1,
+                },
+                900: {
+                  perPage: 3,
+                },
+              },
+            }}
+            render={getSeasonDetail.response?.episodes
+              .filter((episode) => {
+                return episode.still_path !== null;
+              })
+              .map((episode: any, index: number) => {
                 return (
-                  <EpisodesCard
-                    episode_number={episode.episode_number}
-                    still_path={episode.still_path}
-                    overview={episode.overview}
-                    name={episode.name}
-                    key={index}
-                  />
+                  <SplideSlide key={index}>
+                    <EpisodesCard
+                      episode_number={episode.episode_number}
+                      still_path={episode.still_path}
+                      overview={episode.overview}
+                      name={episode.name}
+                      key={index}
+                    />
+                  </SplideSlide>
                 );
-              }
-            )}
-          </ListLayout>
+              })}
+          />
         </div>
       )}
     </section>
