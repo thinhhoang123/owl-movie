@@ -29,8 +29,9 @@ export default function Episodes(props: any) {
   );
   const yearRelease = moment(getSeasonDetail.response?.air_date).year();
 
-  const handleEpisodes = (season_number: string) => {
-    setSeasonNumber(+season_number);
+  const handleEpisodes = (season_number: { key: string; value: string }) => {
+    console.log(season_number);
+    setSeasonNumber(+season_number.value);
   };
 
   return (
@@ -41,6 +42,7 @@ export default function Episodes(props: any) {
         <span className={styles['title-tv']}>{props.name}</span>
       </div>
       <Dropdown
+        name="season_number"
         data={props.listSeason}
         inputLabel="Episodes"
         onChange={handleEpisodes}

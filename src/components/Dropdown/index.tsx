@@ -8,7 +8,7 @@ import {
 import * as React from 'react';
 
 export interface ISelectProps {
-  onChange: (value: object) => void;
+  onChange: (value: { key: string; value: string }) => void;
   data: IDropdownList[];
   inputLabel?: string;
   defaultValue?: number;
