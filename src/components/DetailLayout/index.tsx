@@ -12,6 +12,7 @@ import { SplideSlide } from '@splidejs/react-splide';
 import Carousel from '../Carousel';
 import Title from '../Title';
 import stringAvatar from '@/utils/stringAvatar';
+import MovieCard from '../MovieCard';
 
 export interface IDetailLayoutProps {}
 
@@ -30,6 +31,7 @@ export default function DetailLayout(props: any) {
         <div className={styles['hero-container']}>
           <div className={styles['info-container']}>
             <h2 className={styles['title-info']}>
+              {props.logos ? <ImageTMDB url={props.logos} /> : null}
               {props.mediaType == MediaType.TV ? props.name : props.title}{' '}
               {props.original_language !== 'en'
                 ? `(${
@@ -144,6 +146,32 @@ export default function DetailLayout(props: any) {
       />
 
       {/* --- Cast & crew end --- */}
+
+      {/* --- Recommendations --- */}
+      <Title title="Recommendations" />
+      <Carousel
+        option={{
+          perPage: 8,
+          gap: 30,
+          pagination: false,
+          breakpoints: {
+            600: {
+              perPage: 2,
+            },
+            900: {
+              perPage: 4,
+            },
+          },
+        }}
+        render={props.listRecommendations.map((creater: any, index: any) => {
+          return (
+            <SplideSlide key={index}>
+              <MovieCard {...creater} />
+            </SplideSlide>
+          );
+        })}
+      />
+      {/* --- Recommendations --- */}
     </Container>
   );
 }

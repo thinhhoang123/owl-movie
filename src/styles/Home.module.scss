@@ -6,10 +6,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    border-radius: 0 0 2em 2em;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 
     .banner_card_info__wrapper {
-      border-radius: 0 0 2em 2em;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
       position: absolute;
       bottom: 0;
       width: 100%;

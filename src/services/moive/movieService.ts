@@ -1,11 +1,11 @@
 import { AxiosGet } from '@/setup/axios/axiosMethod';
 import useSWR from 'swr';
 
-import { IGenres } from '../../modal/IGener';
 import { IPopularMovie } from '@/modal/IPopularMovie';
 import { INowPlayingResponse } from '@/modal/INowPlayingModal';
 import { IMovieDetail } from '@/modal/IMovieDetail';
 import { IGetCredits } from '@/modal/IGetCredits';
+import IGetMovieImagesResponse from './model/IGetMovieImagesResponse';
 
 export function GetMovieNowPlaying() {
   const { data, error, isLoading } = useSWR(
@@ -70,6 +70,21 @@ export function GetMovieCredits(
   const { data, error, isLoading } = useSWR(
     `movie/${movieId}/credits`,
     shouldFetch ? AxiosGet<IGetCredits> : null
+  );
+  return {
+    response: data,
+    isLoading,
+    isError: error,
+  };
+}
+
+export function GetMovieImage(
+  movieId: string | string[] | undefined,
+  shouldFetch?: boolean
+) {
+  const { data, error, isLoading } = useSWR(
+    `movie/${movieId}/images?include_image_language=en&language=en}`,
+    shouldFetch ? AxiosGet<IGetMovieImagesResponse> : null
   );
   return {
     response: data,

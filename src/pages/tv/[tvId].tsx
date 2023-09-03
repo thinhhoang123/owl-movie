@@ -6,6 +6,7 @@ import {
   GetContentRatings,
   GetCredits,
   GetDetail,
+  GetTVImages,
 } from '@/services/tv/tvService';
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -16,6 +17,8 @@ export default function TVDetail(props: ITVDetailProps) {
   const router = useRouter();
   const getDetailTV = GetDetail(router.query.tvId, router.isReady);
   const getCredits = GetCredits(router.query.tvId, router.isReady);
+  const getTVImages = GetTVImages(router.query.tvId, router.isReady);
+
   const getContentRatings = GetContentRatings(
     router.query.tvId,
     router.isReady
@@ -24,10 +27,16 @@ export default function TVDetail(props: ITVDetailProps) {
     getDetailTV.isLoading ||
     getCredits.isLoading ||
     getContentRatings.isLoading ||
+    getTVImages.isLoading ||
     !router.isReady
   )
     return <p>Loading....</p>;
-  if (getDetailTV.isError || getCredits.isError || getContentRatings.isError)
+  if (
+    getDetailTV.isError ||
+    getCredits.isError ||
+    getContentRatings.isError ||
+    getTVImages.isError
+  )
     return <p>Loading....</p>;
 
   const listSeason: IDropdownList[] = getDetailTV.response
@@ -43,6 +52,8 @@ export default function TVDetail(props: ITVDetailProps) {
     (rating) => rating.iso_3166_1 === 'US'
   );
 
+  const getLogoOfTV = getTVImages.response?.logos[0].file_path;
+
   return (
     <DetailLayout
       {...getDetailTV.response}
@@ -50,6 +61,7 @@ export default function TVDetail(props: ITVDetailProps) {
       certification={certification?.rating}
       listSeason={listSeason}
       mediaType={MediaType.TV}
+      logos={getLogoOfTV}
     />
   );
 }
