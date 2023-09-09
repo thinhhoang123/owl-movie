@@ -55,6 +55,7 @@ export default function TVDetail(props: ITVDetailProps) {
       })
     : [];
 
+  console.log(getContentRatings.response);
   const certification = getContentRatings.response?.results.find(
     (rating) => rating.iso_3166_1 === 'US'
   );
@@ -73,3 +74,4 @@ export default function TVDetail(props: ITVDetailProps) {
     />
   );
 }
+

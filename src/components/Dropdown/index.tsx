@@ -13,6 +13,8 @@ export interface ISelectProps {
   inputLabel?: string;
   defaultValue?: number;
   name: string;
+  value?: string;
+  clear?: boolean;
 }
 
 export interface IDropdownList {
@@ -22,7 +24,7 @@ export interface IDropdownList {
 
 export default function Dropdown(props: ISelectProps) {
   const [selected, setSelected] = React.useState(
-    props.defaultValue ? props.defaultValue.toString() : ''
+    props.value ? props.value.toString() : ''
   );
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -40,9 +42,12 @@ export default function Dropdown(props: ISelectProps) {
         label="Age"
         onChange={handleChange}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
+        {props.clear ? (
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+        ) : null}
+
         {props.data.map((menu) => {
           return (
             <MenuItem key={menu.value} value={menu.value}>
@@ -54,3 +59,4 @@ export default function Dropdown(props: ISelectProps) {
     </FormControl>
   );
 }
+
