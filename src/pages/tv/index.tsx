@@ -11,6 +11,7 @@ import * as React from 'react';
 import sortBy from '@/enum/sortByDropdown';
 import { IDropdownList } from '@/components/Dropdown';
 import listYear from '@/enum/getListYear';
+import ListTV from '@/components/ListTV/ListTV';
 
 export interface ITestProps {}
 
@@ -19,6 +20,7 @@ interface IDefaultState {
   year: string;
   genres: string;
   sort_by: string;
+  total_pages: number;
 }
 
 const defaultState: IDefaultState = {
@@ -26,22 +28,15 @@ const defaultState: IDefaultState = {
   year: listYear[0].value,
   genres: '',
   sort_by: 'popularity.desc',
+  total_pages: 0,
 };
 
 export default function Test(props: ITestProps) {
   const [state, setState] = useImmer(defaultState);
   const getGenresTV = GetGenres(MediaType.TV);
-  const getDiscover = GetDiscover(MediaType.TV, {
-    page: state.page,
-    first_air_date_year: state.year,
-    with_genres: state.genres,
-    language: 'en-US',
-    sort_by: state.sort_by,
-  });
 
-  if (getGenresTV.isLoading || !getGenresTV.response || getDiscover.isLoading)
-    return <p>Loading....</p>;
-  if (getGenresTV.isError || getDiscover.isError) return <p>Error</p>;
+  if (getGenresTV.isLoading || !getGenresTV.response) return <p>Loading....</p>;
+  if (getGenresTV.isError) return <p>Error</p>;
 
   const handleChangePage = (event: React.ChangeEvent<any>, page: number) => {
     setState((draft) => {
@@ -51,7 +46,7 @@ export default function Test(props: ITestProps) {
 
   const genres: IDropdownList[] = getGenresTV.response.genres?.map((genre) => {
     return {
-      value: genre.name,
+      value: genre.id,
       label: genre.name,
     };
   });
@@ -61,44 +56,52 @@ export default function Test(props: ITestProps) {
       inputLabel: 'Years',
       data: listYear,
       name: 'year',
-      defaultValue: listYear[0].value,
-      value: '',
+      value: state.year || '',
     },
     {
       inputLabel: 'Genres',
       data: genres,
       name: 'with_genres',
-      defaultValue: '',
-      value: '',
+      value: state.genres || '',
     },
     {
       inputLabel: 'Sort By',
       data: sortBy,
       name: 'sort_by',
-      defaultValue: 'popularity.desc',
-      value: '',
+      value: state.sort_by || '',
     },
   ];
 
   const handleFilter = (data: any) => {
-    data.forEach((element: any) => {
-      if (element !== '') {
-        setState((draft: any) => {
-          draft[element.name] = element.value;
-        });
-      }
+    console.log(data);
+    setState((draft) => {
+      draft.year = data[0].value;
+      draft.genres = data[1].value;
+      draft.sort_by = data[2].value;
+    });
+  };
+
+  const handlePagination = (data: any) => {
+    setState((draft) => {
+      draft.page = data.page;
+      draft.total_pages = data.total_pages;
     });
   };
   return (
     <>
-      <FilterHeader defaultFilter={defaultFilter} onChange={handleFilter} />
-      <ListLayout widthCol={250}>
-        {getDiscover.response?.results?.map((movie: IMovieList) => {
-          return (
-            <MovieCard {...movie} key={movie.id} media_type={MediaType.MOVIE} />
-          );
-        })}
-      </ListLayout>
+      <FilterHeader
+        title="TV Show"
+        defaultFilter={defaultFilter}
+        onChange={handleFilter}
+      />
+      <ListTV
+        page={state.page}
+        genres={state.genres}
+        sort_by={state.sort_by}
+        year={state.year}
+        handlePagination={handlePagination}
+      />
+
       <div
         style={{
           display: 'grid',
@@ -107,7 +110,7 @@ export default function Test(props: ITestProps) {
       >
         <Pagination
           defaultPage={state.page}
-          count={getDiscover.response?.total_pages}
+          count={state.total_pages}
           color="primary"
           showFirstButton
           showLastButton
@@ -117,3 +120,4 @@ export default function Test(props: ITestProps) {
     </>
   );
 }
+

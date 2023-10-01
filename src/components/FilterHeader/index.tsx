@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styles from './index.module.scss';
 import Dropdown from '../Dropdown';
-import Title from '../Title';
 
 export interface IFilterHeaderProps {
+  title: string;
   defaultFilter: any;
   onChange: (data: any) => void;
 }
 
-export default function FilterHeader(props: IFilterHeaderProps) {
+function FilterHeader(props: IFilterHeaderProps) {
   const handleEpisodes = (data: any) => {
     const dataReturn = props.defaultFilter.map((filter: any) => {
       return {
@@ -22,10 +22,9 @@ export default function FilterHeader(props: IFilterHeaderProps) {
 
   return (
     <section className={styles['filter-container']}>
-      <Title title="TV shows" />
+      <h2>{props.title}</h2>
       <div className={styles['filter-dropdown']}>
         {props.defaultFilter.map((filter: any) => {
-          console.log(filter);
           return (
             <Dropdown
               key={filter.name}
@@ -33,7 +32,8 @@ export default function FilterHeader(props: IFilterHeaderProps) {
               inputLabel={filter.inputLabel}
               name={filter.name}
               onChange={handleEpisodes}
-              defaultValue={filter.defaultValue}
+              value={filter.value}
+              clear
             />
           );
         })}
@@ -41,3 +41,6 @@ export default function FilterHeader(props: IFilterHeaderProps) {
     </section>
   );
 }
+
+export default React.memo(FilterHeader);
+

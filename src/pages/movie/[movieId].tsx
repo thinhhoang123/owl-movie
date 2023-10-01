@@ -42,7 +42,7 @@ export default function MovieDetails(props: IMovieDetailsProps) {
         return contruy.iso_3166_1 == 'US';
       })?.certification
     : null;
-  const getLogo = getMovieImages.response?.logos[0].file_path;
+  const getLogo = getMovieImages.response?.logos[0]?.file_path;
 
   return (
     <DetailLayout
@@ -55,3 +55,4 @@ export default function MovieDetails(props: IMovieDetailsProps) {
     />
   );
 }
+

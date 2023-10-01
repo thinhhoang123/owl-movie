@@ -30,7 +30,6 @@ export default function Episodes(props: any) {
   const yearRelease = moment(getSeasonDetail.response?.air_date).year();
 
   const handleEpisodes = (season_number: { key: string; value: string }) => {
-    console.log(season_number);
     setSeasonNumber(+season_number.value);
   };
 
@@ -113,3 +112,4 @@ const EpisodesCard = (props: IEpisodesCardProps) => {
     </div>
   );
 };
+

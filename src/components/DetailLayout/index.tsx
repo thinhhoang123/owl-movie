@@ -50,10 +50,14 @@ export default function DetailLayout(props: any) {
                   </span>
                 </>
               ) : null}
-              <span className={styles['item-space']}>|</span>
-              <span className={styles['item-certification']}>
-                <Badges label={props.certification} />
-              </span>
+              {props.certification ? (
+                <>
+                  <span className={styles['item-space']}>|</span>
+                  <span className={styles['item-certification']}>
+                    <Badges label={props.certification} />
+                  </span>
+                </>
+              ) : null}
               <span className={styles['item-space']}>|</span>
               <span className={styles['item-fact']}>
                 {props.genres
@@ -174,3 +178,4 @@ export default function DetailLayout(props: any) {
     </Container>
   );
 }
+
