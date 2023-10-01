@@ -2,6 +2,7 @@ import DetailLayout from '@/components/DetailLayout';
 import { IDropdownList } from '@/components/Dropdown';
 import { MediaType } from '@/enum/mediaType';
 import { ISeasons } from '@/modal/IGetDetails';
+import GetRecommendation from '@/services/recommendationsService.ts';
 import {
   GetContentRatings,
   GetCredits,
@@ -18,7 +19,11 @@ export default function TVDetail(props: ITVDetailProps) {
   const getDetailTV = GetDetail(router.query.tvId, router.isReady);
   const getCredits = GetCredits(router.query.tvId, router.isReady);
   const getTVImages = GetTVImages(router.query.tvId, router.isReady);
-
+  const getRecommendations = GetRecommendation(
+    MediaType.TV,
+    router.query.tvId,
+    router.isReady
+  );
   const getContentRatings = GetContentRatings(
     router.query.tvId,
     router.isReady
@@ -28,6 +33,7 @@ export default function TVDetail(props: ITVDetailProps) {
     getCredits.isLoading ||
     getContentRatings.isLoading ||
     getTVImages.isLoading ||
+    getRecommendations.isLoading ||
     !router.isReady
   )
     return <p>Loading....</p>;
@@ -35,7 +41,8 @@ export default function TVDetail(props: ITVDetailProps) {
     getDetailTV.isError ||
     getCredits.isError ||
     getContentRatings.isError ||
-    getTVImages.isError
+    getTVImages.isError ||
+    getRecommendations.isError
   )
     return <p>Loading....</p>;
 
@@ -62,6 +69,7 @@ export default function TVDetail(props: ITVDetailProps) {
       listSeason={listSeason}
       mediaType={MediaType.TV}
       logos={getLogoOfTV}
+      listRecommendations={getRecommendations.response?.results}
     />
   );
 }

@@ -22,7 +22,6 @@ export default function DetailLayout(props: any) {
   ).year();
 
   const getCastCrew = [...props.cast, ...props.crew.slice(0, 30)];
-
   return (
     <Container maxWidth="xl">
       {/* --- Header begin --- */}

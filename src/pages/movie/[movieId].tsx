@@ -44,7 +44,6 @@ export default function MovieDetails(props: IMovieDetailsProps) {
     : null;
   const getLogo = getMovieImages.response?.logos[0].file_path;
 
-  console.log(getRecommendations.response?.results);
   return (
     <DetailLayout
       {...getDetailMovie.response}
