@@ -1,5 +1,5 @@
 {
-  "name": "owl-movie-nextjs",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,27 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.16",
-    "@splidejs/react-splide": "^0.7.12",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.33",
-    "@types/react-dom": "18.0.11",
-    "axios": "^1.3.5",
-    "eslint": "8.37.0",
-    "eslint-config-next": "13.3.0",
-    "moment": "^2.29.4",
-    "next": "13.3.0",
-    "react": "18.2.0",
-    "react-device-detect": "^2.2.3",
-    "react-dom": "18.2.0",
-    "react-youtube": "^10.1.0",
-    "swr": "^2.1.2",
-    "typescript": "5.0.4",
-    "use-immer": "^0.9.0"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.1.0"
   },
   "devDependencies": {
-    "sass": "^1.61.0"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0"
   }
 }
