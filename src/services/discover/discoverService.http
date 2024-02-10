@@ -1,5 +1,0 @@
-@hostName = https://api.themoviedb.org/3/
-@apiKey = 29e9c21417a5cdd0f56b401142fdba10
-@mediaType = tv
-###
-GET {{hostName}}/discover/{{mediaType}}?api_key={{apiKey}}&language=en-US
