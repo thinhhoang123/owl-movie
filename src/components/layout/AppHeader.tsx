@@ -56,7 +56,7 @@ export default function AppHeader() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <h1 className="text-3xl font-bold">LOGO</h1>
+              <h1 className="text-3xl font-bold">Owl movie</h1>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="bg-transparent">

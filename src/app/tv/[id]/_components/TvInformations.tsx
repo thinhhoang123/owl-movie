@@ -1,12 +1,13 @@
 import TmdbImage from '@/components/ui/tmdb-image';
 import IGetMovieImagesResponse from '@/models/IMovieLogo';
-import { getMovieImage } from '@/services/movie';
 import { Play } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { IGenre } from '@/models/IGener';
 import moment from 'moment';
 import { getTvImage } from '@/services/tv';
+import { ICreatedBy } from '@/models/IGetDetails';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface TvInformationsProps {
   title: string;
@@ -15,6 +16,7 @@ interface TvInformationsProps {
   years?: string;
   generes?: IGenre[];
   seasons?: number;
+  createdBy?: ICreatedBy[];
 }
 
 export default async function TvInformations({
@@ -24,6 +26,7 @@ export default async function TvInformations({
   years,
   generes,
   seasons,
+  createdBy,
 }: TvInformationsProps) {
   const movieImage: IGetMovieImagesResponse = await getTvImage(id);
   const logo = movieImage?.logos[0]?.file_path;
@@ -43,6 +46,12 @@ export default async function TvInformations({
             })}
           </div>
           <p className="text-gray-300">{describe}</p>
+          <div className="flex gap-2">
+            <p className="text-gray-300">Director</p>
+            {createdBy?.map((person) => {
+              return <Badge key={person.id}>{person.name}</Badge>;
+            })}
+          </div>
           <div>
             <Button>
               <Play className="mr-2 h-4 w-4" /> Watch trailer
