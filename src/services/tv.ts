@@ -11,3 +11,8 @@ export async function getTvImage(id: string) {
   );
   return await response;
 }
+
+export async function getTvEpisodes(id: string, seasonNumber: string) {
+  const response = await FetchServer.get(`tv/${id}/season/${seasonNumber}`);
+  return await response;
+}

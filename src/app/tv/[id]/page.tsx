@@ -24,7 +24,7 @@ export default async function TvId({ params }: { params: { id: string } }) {
         seasons={detailTv.seasons.length}
       />
       <div className="container">
-        <TvSeasons seasons={detailTv.seasons} />
+        <TvSeasons seasons={detailTv.seasons} id={id} />
       </div>
     </div>
   );
